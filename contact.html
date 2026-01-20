@@ -1,0 +1,1230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Swetha R | Contact</title>
+    
+    <!-- Bootstrap 5 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- AOS Animation -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <!-- Leaflet Maps -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+    
+    <style>
+        :root {
+            --primary: #6a5acd;
+            --primary-dark: #483d8b;
+            --secondary: #ff7b54;
+            --accent: #4cc9f0;
+            --dark: #1a1a2e;
+            --light: #f8f9fa;
+            --gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: var(--dark);
+            color: var(--light);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+        
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Dancing Script', cursive;
+            font-weight: 700;
+        }
+        
+        .cursive {
+            font-family: 'Dancing Script', cursive;
+        }
+        
+       /* Navigation */
+        .navbar {
+            background: rgba(26, 26, 46, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .navbar-brand {
+            font-family: 'Dancing Script', cursive;
+            font-size: 2rem;
+            color: var(--accent) !important;
+        }
+        
+        .nav-link {
+            color: rgba(255, 255, 255, 0.8) !important;
+            margin: 0 1rem;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-link:hover {
+            color: var(--accent) !important;
+        }
+        
+        .nav-link.active {
+            color: var(--accent) !important;
+        }
+        
+        .nav-link:after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            background: var(--accent);
+            bottom: -5px;
+            left: 0;
+            transition: width 0.3s ease;
+        }
+        
+        .nav-link.active:after {
+            width: 100%;
+        }
+        
+        
+        /* Page Header */
+        .page-header {
+            min-height: 40vh;
+            display: flex;
+            align-items: center;
+            padding-top: 100px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .header-bg {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 60% 40%, rgba(76, 201, 240, 0.3) 0%, transparent 50%);
+            z-index: -1;
+        }
+        
+        .page-title {
+            font-size: 5rem;
+            background: linear-gradient(to right, #ff7b54, #4cc9f0);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-align: center;
+            margin-bottom: 1rem;
+        }
+        
+        .page-subtitle {
+            text-align: center;
+            font-size: 1.5rem;
+            color: rgba(255, 255, 255, 0.7);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        /* Contact Section */
+        .contact-section {
+            padding: 5rem 0;
+        }
+        
+        .contact-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+        }
+        
+        /* Contact Info */
+        .contact-info {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border-radius: 30px;
+            padding: 3rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+        }
+        
+        .info-title {
+            font-size: 2.5rem;
+            color: var(--accent);
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+        
+        .info-item {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+            padding: 1.5rem;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 20px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .info-item:hover {
+            background: rgba(255, 255, 255, 0.08);
+            transform: translateX(10px);
+        }
+        
+        .info-icon {
+            width: 60px;
+            height: 60px;
+            background: var(--gradient);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: white;
+            flex-shrink: 0;
+            transition: all 0.3s ease;
+        }
+        
+        .info-item:hover .info-icon {
+            transform: rotate(15deg) scale(1.1);
+        }
+        
+        .info-content h4 {
+            font-size: 1.3rem;
+            color: white;
+            margin-bottom: 0.3rem;
+        }
+        
+        .info-content p {
+            color: rgba(255, 255, 255, 0.7);
+        }
+        
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+        
+        .social-link {
+            width: 50px;
+            height: 50px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--accent);
+            font-size: 1.3rem;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .social-link:hover {
+            background: var(--gradient);
+            color: white;
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+        
+        /* Contact Form */
+        .contact-form-container {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border-radius: 30px;
+            padding: 3rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+        }
+        
+        .form-title {
+            font-size: 2.5rem;
+            color: var(--accent);
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+        
+        .contact-form {
+            display: grid;
+            gap: 1.5rem;
+        }
+        
+        .form-group {
+            position: relative;
+        }
+        
+        .form-input {
+            width: 100%;
+            padding: 1.2rem;
+            background: rgba(255, 255, 255, 0.05);
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            color: white;
+            font-family: 'Poppins', sans-serif;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+        
+        .form-input:focus {
+            outline: none;
+            border-color: var(--accent);
+            background: rgba(255, 255, 255, 0.08);
+            box-shadow: 0 0 0 3px rgba(76, 201, 240, 0.1);
+        }
+        
+        .form-label {
+            position: absolute;
+            top: 1.2rem;
+            left: 1.2rem;
+            color: rgba(255, 255, 255, 0.6);
+            pointer-events: none;
+            transition: all 0.3s ease;
+        }
+        
+        .form-input:focus + .form-label,
+        .form-input:not(:placeholder-shown) + .form-label {
+            top: -0.8rem;
+            left: 1rem;
+            font-size: 0.8rem;
+            color: var(--accent);
+            background: var(--dark);
+            padding: 0 0.5rem;
+        }
+        
+        .form-textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
+        
+        .submit-btn {
+            padding: 1.2rem 2.5rem;
+            background: var(--gradient);
+            border: none;
+            border-radius: 15px;
+            color: white;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.8rem;
+            transition: all 0.3s ease;
+            margin-top: 1rem;
+        }
+        
+        .submit-btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+        }
+        
+        .submit-btn:active {
+            transform: translateY(-2px);
+        }
+        
+        /* Map Section */
+        .map-section {
+            padding: 5rem 0;
+            background: rgba(0, 0, 0, 0.2);
+        }
+        
+        .map-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .map-title {
+            font-size: 2.5rem;
+            color: var(--accent);
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+        
+        #contactMap {
+            height: 400px;
+            border-radius: 20px;
+            overflow: hidden;
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+        
+        /* Reference Section */
+        .reference-section {
+            padding: 5rem 0;
+        }
+        
+        .reference-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border-radius: 25px;
+            padding: 3rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            max-width: 800px;
+            margin: 0 auto;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+        }
+        
+        .reference-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.3);
+            border-color: rgba(76, 201, 240, 0.3);
+        }
+        
+        .reference-title {
+            font-size: 2rem;
+            color: var(--accent);
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+        
+        .reference-info {
+            display: grid;
+            gap: 1rem;
+        }
+        
+        .reference-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 15px;
+        }
+        
+        .reference-icon {
+            color: var(--secondary);
+            font-size: 1.2rem;
+            width: 40px;
+            text-align: center;
+        }
+        
+        /* Floating Elements */
+        .floating-contact {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(76, 201, 240, 0.1);
+            filter: blur(30px);
+            z-index: -1;
+            animation: floatContact 20s infinite ease-in-out;
+        }
+        
+        @keyframes floatContact {
+            0%, 100% { transform: translate(0, 0) rotate(0deg) scale(1); }
+            33% { transform: translate(40px, -60px) rotate(120deg) scale(1.2); }
+            66% { transform: translate(-30px, 40px) rotate(240deg) scale(0.8); }
+        }
+        
+        /* Typing Effect */
+        .typing-text {
+            font-size: 1.5rem;
+            color: var(--accent);
+            height: 2rem;
+            margin: 1rem 0;
+        }
+        
+        .cursor {
+            display: inline-block;
+            width: 3px;
+            background-color: var(--accent);
+            animation: blink 1s infinite;
+        }
+        
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+        
+  
+       /* MOBILE & TABLET RESPONSIVE STYLES */
+@media (max-width: 992px) {
+    /* Page header adjustments */
+    .page-title {
+        font-size: 3.5rem;
+    }
+    .page-subtitle {
+        font-size: 1.2rem;
+        max-width: 90%;
+        margin: 1rem auto;
+    }
+    .typing-text {
+        font-size: 1.2rem;
+    }
+
+    /* Contact grid stacks on smaller screens */
+    .contact-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+        padding: 0 1rem;
+    }
+
+    /* Contact info & form */
+    .contact-info, .contact-form-container {
+        padding: 2rem;
+    }
+
+    .info-item {
+        flex-direction: row;
+        justify-content: flex-start;
+        padding: 1rem;
+    }
+
+    .info-icon {
+        width: 50px;
+        height: 50px;
+        font-size: 1.2rem;
+    }
+
+    .info-content h4 {
+        font-size: 1.1rem;
+    }
+
+    .info-content p {
+        font-size: 0.9rem;
+    }
+
+    .social-link {
+        width: 45px;
+        height: 45px;
+        font-size: 1.1rem;
+    }
+
+    /* Form inputs */
+    .form-input, .form-textarea {
+        padding: 0.9rem 1rem;
+        font-size: 0.9rem;
+    }
+
+    .form-label {
+        top: 0.9rem;
+        left: 1rem;
+        font-size: 0.85rem;
+    }
+
+    .submit-btn {
+        padding: 1rem 2rem;
+        font-size: 1rem;
+    }
+
+    /* Map height */
+    #contactMap {
+        height: 300px;
+    }
+
+    /* Reference card */
+    .reference-card {
+        padding: 2rem;
+    }
+
+    .reference-title {
+        font-size: 1.8rem;
+    }
+}
+/* MOBILE NAVBAR RESPONSIVE */
+@media (max-width: 992px) {
+    .navbar-nav {
+        text-align: center;
+        background: rgba(26, 26, 46, 0.95);
+        backdrop-filter: blur(10px);
+        padding: 1rem 0;
+    }
+
+    .navbar-nav .nav-link {
+        margin: 0.5rem 0;
+        font-size: 1.1rem;
+    }
+
+    .navbar-toggler {
+        border: none;
+        font-size: 1.5rem;
+        color: var(--accent);
+    }
+
+    .navbar-collapse {
+        transition: all 0.3s ease-in-out;
+    }
+}
+
+/* Back to Portal Button */
+        .back-to-portal {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 1000;
+        }
+        
+        .portal-btn {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: var(--gradient);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+            text-decoration: none;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
+        }
+        
+        .portal-btn:hover {
+            transform: scale(1.1) rotate(90deg);
+            box-shadow: 0 10px 30px rgba(106, 90, 205, 0.5);
+            color: white;
+        }
+        
+
+/* EXTRA SMALL SCREENS (PHONES) */
+@media (max-width: 480px) {
+    .page-title {
+        font-size: 2.2rem;
+    }
+
+    .page-subtitle {
+        font-size: 1rem;
+    }
+
+    .typing-text {
+        font-size: 1rem;
+    }
+
+    .info-item {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.5rem;
+    }
+
+    .info-icon {
+        width: 40px;
+        height: 40px;
+        font-size: 1rem;
+    }
+
+    .info-content h4 {
+        font-size: 1rem;
+    }
+
+    .info-content p {
+        font-size: 0.8rem;
+    }
+
+    .social-link {
+        width: 40px;
+        height: 40px;
+        font-size: 0.9rem;
+    }
+
+    .form-input, .form-textarea {
+        padding: 0.7rem 0.8rem;
+        font-size: 0.85rem;
+    }
+
+    .form-label {
+        top: 0.7rem;
+        left: 0.8rem;
+        font-size: 0.75rem;
+    }
+
+    .submit-btn {
+        padding: 0.8rem 1.5rem;
+        font-size: 0.9rem;
+    }
+
+    #contactMap {
+        height: 250px;
+    }
+
+    .reference-card {
+        padding: 1.5rem;
+    }
+
+    .reference-title {
+        font-size: 1.5rem;
+    }
+}
+
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">Swetha R</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon text-white"><i class="fas fa-bars"></i></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link " href="home.html">Profile Snapshot</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="education.html">Learning Path</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="projects.html">Project Showcase</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="internship.html">Professional Experience</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="certificates.html">Credentials</a>
+                    </li>
+                    
+                    <li class="nav-item">
+                        <a class="nav-link active" href="contact.html">Let’s Connect</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    
+    <!-- Page Header -->
+    <header class="page-header">
+        <div class="header-bg"></div>
+        <div class="container">
+            <h1 class="page-title cursive" data-aos="fade-up">Let's Connect</h1>
+            <p class="page-subtitle" data-aos="fade-up" data-aos-delay="200">
+                Get in touch for collaborations, opportunities, or just to say hello!
+            </p>
+            <div class="typing-text text-center" data-aos="fade-up" data-aos-delay="400">
+                <span id="typed-text"></span><span class="cursor"></span>
+            </div>
+        </div>
+    </header>
+    
+  <!-- Contact Section -->
+<section class="contact-section">
+    <div class="contact-container">
+        
+        <!-- Contact Info Centered -->
+        <div class="contact-info text-center" data-aos="fade-up">
+            <h2 class="info-title cursive">Get In Touch</h2>
+
+            <!-- Email -->
+            <div class="info-item center-item" onclick="copyToClipboard('swethar3005@gmail.com')">
+                <div class="info-icon">
+                    <i class="fas fa-envelope"></i>
+                </div>
+                <div class="info-content">
+                    <h4>Email Address</h4>
+                    <p>swethar3005@gmail.com</p>
+                    <small style="color: var(--accent); opacity: 0.7;">Click to copy</small>
+                </div>
+            </div>
+
+            <!-- Phone -->
+            <div class="info-item center-item" onclick="copyToClipboard('+91 9597836640')">
+                <div class="info-icon">
+                    <i class="fas fa-phone"></i>
+                </div>
+                <div class="info-content">
+                    <h4>Phone Number</h4>
+                    <p>+91 9597836640</p>
+                    <small style="color: var(--accent); opacity: 0.7;">Click to copy</small>
+                </div>
+            </div>
+
+            <!-- Location -->
+            <div class="info-item center-item">
+                <div class="info-icon">
+                    <i class="fas fa-map-marker-alt"></i>
+                </div>
+                <div class="info-content">
+                    <h4>Location</h4>
+                    <p>Karur, Tamil Nadu, India</p>
+                </div>
+            </div>
+
+            <!-- College -->
+            <div class="info-item center-item">
+                <div class="info-icon">
+                    <i class="fas fa-university"></i>
+                </div>
+                <div class="info-content">
+                    <h4>College</h4>
+                    <p>M. Kumarasamy College of Engineering</p>
+                    <p>Computer Science & Engineering</p>
+                </div>
+            </div>
+
+            <!-- Social Links BELOW -->
+            <div class="social-links center-social">
+                <a href="https://www.linkedin.com/in/swetha-r-7a0326290/" class="social-link" title="LinkedIn" target="_blank">
+                    <i class="fab fa-linkedin-in"></i>
+                </a>
+
+                <a href="https://github.com/SwethaRajesh2130" class="social-link" title="GitHub" target="_blank">
+                    <i class="fab fa-github"></i>
+                </a>
+
+                <a href="https://wa.me/919597836640" class="social-link" title="WhatsApp" target="_blank">
+                    <i class="fab fa-whatsapp"></i>
+                </a>
+
+                <a href="mailto:swethar3005@gmail.com" class="social-link" title="Email">
+                    <i class="fas fa-envelope"></i>
+                </a>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+    
+    <!-- Map Section -->
+    <section class="map-section">
+        <div class="map-container">
+            <h2 class="map-title cursive" data-aos="fade-up">Location</h2>
+            <div id="contactMap" data-aos="zoom-in"></div>
+        </div>
+    </section>
+    
+    <!-- Reference Section -->
+    <section class="reference-section">
+        <div class="reference-card" data-aos="flip-up">
+            <h2 class="reference-title cursive">Reference</h2>
+            <div class="reference-info">
+                <div class="reference-item">
+                    <div class="reference-icon">
+                        <i class="fas fa-user-tie"></i>
+                    </div>
+                    <div>
+                        <h4>Mrs. P. Priya</h4>
+                        <p>Assistant Professor, Department of CSE</p>
+                    </div>
+                </div>
+                
+                <div class="reference-item">
+                    <div class="reference-icon">
+                        <i class="fas fa-university"></i>
+                    </div>
+                    <div>
+                        <h4>M. Kumarasamy College of Engineering</h4>
+                        <p>Thalavapalayam, Karur - 639113</p>
+                    </div>
+                </div>
+                
+                <div class="reference-item">
+                    <div class="reference-icon">
+                        <i class="fas fa-phone"></i>
+                    </div>
+                    <div>
+                        <h4>Phone</h4>
+                        <p>+91 94864 50377</p>
+                    </div>
+                </div>
+                
+                <div class="reference-item">
+                    <div class="reference-icon">
+                        <i class="fas fa-envelope"></i>
+                    </div>
+                    <div>
+                        <h4>Email</h4>
+                        <p>priyap.cse@mkce.ac.in</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Back to Portal Button -->
+    <div class="back-to-portal">
+        <a href="index.html" class="portal-btn">
+            <i class="fas fa-home"></i>
+        </a>
+    </div>
+    
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- AOS Animation -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <!-- Leaflet Maps -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    
+    <script>
+        // Initialize AOS
+        AOS.init({
+            duration: 1000,
+            once: true,
+            offset: 100
+        });
+        
+        // Typing effect
+        const typingText = document.getElementById('typed-text');
+        const texts = [
+            "Available for collaborations",
+            "Open to new opportunities",
+            "Let's build something amazing",
+            "Connect for discussions",
+            "Ready for challenges"
+        ];
+        let textIndex = 0;
+        let charIndex = 0;
+        let isDeleting = false;
+        let typingSpeed = 100;
+        
+        function typeEffect() {
+            const currentText = texts[textIndex];
+            
+            if (isDeleting) {
+                typingText.textContent = currentText.substring(0, charIndex - 1);
+                charIndex--;
+                typingSpeed = 50;
+            } else {
+                typingText.textContent = currentText.substring(0, charIndex + 1);
+                charIndex++;
+                typingSpeed = 100;
+            }
+            
+            if (!isDeleting && charIndex === currentText.length) {
+                typingSpeed = 2000;
+                isDeleting = true;
+            } else if (isDeleting && charIndex === 0) {
+                isDeleting = false;
+                textIndex = (textIndex + 1) % texts.length;
+                typingSpeed = 500;
+            }
+            
+            setTimeout(typeEffect, typingSpeed);
+        }
+        
+        // Start typing effect
+        setTimeout(typeEffect, 1000);
+        
+        // Initialize Leaflet Map
+        function initMap() {
+            // Coordinates for Karur, Tamil Nadu
+            const karur = [10.9601, 78.0766];
+            
+            // Create map
+            const map = L.map('contactMap').setView(karur, 13);
+            
+            // Add OpenStreetMap tiles
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                attribution: '© OpenStreetMap contributors',
+                maxZoom: 18
+            }).addTo(map);
+            
+            // Custom marker icon
+            const customIcon = L.divIcon({
+                html: `<div style="background: var(--gradient); width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 1.2rem; box-shadow: 0 0 20px rgba(106, 90, 205, 0.5);"><i class="fas fa-map-marker-alt"></i></div>`,
+                iconSize: [40, 40],
+                iconAnchor: [20, 40],
+                popupAnchor: [0, -40]
+            });
+            
+            // Add marker
+            const marker = L.marker(karur, { icon: customIcon }).addTo(map);
+            
+            // Add popup
+            marker.bindPopup(`
+                <div style="text-align: center; padding: 1rem;">
+                    <h3 style="color: var(--primary); margin-bottom: 0.5rem;">Swetha R</h3>
+                    <p style="color: #666; margin-bottom: 0.5rem;">Karur, Tamil Nadu</p>
+                    <p style="color: #666;">Computer Science Student</p>
+                </div>
+            `).openPopup();
+            
+            // Add click event to marker
+            marker.on('click', function() {
+                this.openPopup();
+            });
+        }
+        
+        // Initialize map when page loads
+        window.addEventListener('load', initMap);
+        
+        // Create floating elements
+        function createFloatingElements() {
+            for (let i = 0; i < 3; i++) {
+                const element = document.createElement('div');
+                element.className = 'floating-contact';
+                
+                const size = Math.random() * 300 + 200;
+                const left = Math.random() * 100;
+                const top = Math.random() * 100;
+                const delay = Math.random() * 5;
+                
+                element.style.cssText = `
+                    width: ${size}px;
+                    height: ${size}px;
+                    left: ${left}%;
+                    top: ${top}%;
+                    animation-delay: ${delay}s;
+                    background: ${i === 0 ? 'rgba(106, 90, 205, 0.1)' : 
+                                 i === 1 ? 'rgba(255, 123, 84, 0.1)' : 
+                                 'rgba(76, 201, 240, 0.1)'};
+                `;
+                
+                document.body.appendChild(element);
+            }
+        }
+        
+        // Initialize floating elements
+        createFloatingElements();
+        
+        // Form submission
+        const contactForm = document.getElementById('contactForm');
+        
+        contactForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Get form values
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const subject = document.getElementById('subject').value;
+            const message = document.getElementById('message').value;
+            
+            // Show success message with animation
+            const submitBtn = this.querySelector('.submit-btn');
+            const originalHTML = submitBtn.innerHTML;
+            
+            submitBtn.innerHTML = '<i class="fas fa-check"></i> Message Sent!';
+            submitBtn.style.background = 'linear-gradient(135deg, #38b000, #2d8c00)';
+            
+            // Add celebration effect
+            createCelebrationEffect();
+            
+            // Reset form after 3 seconds
+            setTimeout(() => {
+                contactForm.reset();
+                submitBtn.innerHTML = originalHTML;
+                submitBtn.style.background = 'var(--gradient)';
+                
+                // Reset form labels
+                const labels = document.querySelectorAll('.form-label');
+                labels.forEach(label => {
+                    label.style.top = '1.2rem';
+                    label.style.fontSize = '1rem';
+                    label.style.color = 'rgba(255, 255, 255, 0.6)';
+                });
+            }, 3000);
+        });
+        
+        // Create celebration effect
+        function createCelebrationEffect() {
+            const colors = ['#ff7b54', '#4cc9f0', '#6a5acd', '#38b000'];
+            
+            for (let i = 0; i < 20; i++) {
+                const confetti = document.createElement('div');
+                confetti.className = 'confetti';
+                
+                const color = colors[Math.floor(Math.random() * colors.length)];
+                const size = Math.random() * 10 + 5;
+                const left = Math.random() * 100;
+                const rotation = Math.random() * 360;
+                
+                confetti.style.cssText = `
+                    position: fixed;
+                    width: ${size}px;
+                    height: ${size}px;
+                    background: ${color};
+                    left: ${left}%;
+                    top: 100%;
+                    border-radius: ${Math.random() > 0.5 ? '50%' : '0'};
+                    z-index: 10000;
+                    transform: rotate(${rotation}deg);
+                    animation: confettiFall 1s ease-out forwards;
+                `;
+                
+                document.body.appendChild(confetti);
+                
+                // Remove confetti after animation
+                setTimeout(() => {
+                    confetti.remove();
+                }, 1000);
+            }
+            
+            // Add CSS for confetti animation
+            if (!document.getElementById('confetti-style')) {
+                const style = document.createElement('style');
+                style.id = 'confetti-style';
+                style.textContent = `
+                    @keyframes confettiFall {
+                        0% {
+                            transform: translateY(0) rotate(0deg);
+                            opacity: 1;
+                        }
+                        100% {
+                            transform: translateY(-100vh) rotate(720deg);
+                            opacity: 0;
+                        }
+                    }
+                `;
+                document.head.appendChild(style);
+            }
+        }
+        
+        // Copy to clipboard function
+        function copyToClipboard(text) {
+            navigator.clipboard.writeText(text).then(() => {
+                // Show copied notification
+                showNotification(`Copied: ${text}`);
+            }).catch(err => {
+                console.error('Failed to copy: ', err);
+                showNotification('Failed to copy to clipboard');
+            });
+        }
+        
+        // Show notification
+        function showNotification(message) {
+            const notification = document.createElement('div');
+            notification.className = 'notification';
+            notification.textContent = message;
+            notification.style.cssText = `
+                position: fixed;
+                top: 100px;
+                right: 30px;
+                background: var(--gradient);
+                color: white;
+                padding: 1rem 2rem;
+                border-radius: 10px;
+                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+                z-index: 10000;
+                animation: slideIn 0.3s ease, fadeOut 0.3s ease 2.7s forwards;
+            `;
+            
+            document.body.appendChild(notification);
+            
+            // Remove notification after 3 seconds
+            setTimeout(() => {
+                notification.remove();
+            }, 3000);
+            
+            // Add CSS for notification animation
+            if (!document.getElementById('notification-style')) {
+                const style = document.createElement('style');
+                style.id = 'notification-style';
+                style.textContent = `
+                    @keyframes slideIn {
+                        from {
+                            transform: translateX(100%);
+                            opacity: 0;
+                        }
+                        to {
+                            transform: translateX(0);
+                            opacity: 1;
+                        }
+                    }
+                    @keyframes fadeOut {
+                        from {
+                            opacity: 1;
+                        }
+                        to {
+                            opacity: 0;
+                        }
+                    }
+                `;
+                document.head.appendChild(style);
+            }
+        }
+        
+        // Add hover effect to info items
+        document.querySelectorAll('.info-item').forEach(item => {
+            item.addEventListener('mouseenter', function() {
+                const icon = this.querySelector('.info-icon');
+                icon.style.transform = 'rotate(15deg) scale(1.2)';
+            });
+            
+            item.addEventListener('mouseleave', function() {
+                const icon = this.querySelector('.info-icon');
+                icon.style.transform = 'rotate(0) scale(1)';
+            });
+        });
+        
+        // Add input focus effects
+        document.querySelectorAll('.form-input').forEach(input => {
+            input.addEventListener('focus', function() {
+                const label = this.nextElementSibling;
+                label.style.color = 'var(--accent)';
+            });
+            
+            input.addEventListener('blur', function() {
+                if (!this.value) {
+                    const label = this.nextElementSibling;
+                    label.style.color = 'rgba(255, 255, 255, 0.6)';
+                }
+            });
+        });
+        
+        // Parallax effect on scroll
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const headerBg = document.querySelector('.header-bg');
+            
+            if (headerBg) {
+                headerBg.style.transform = `translateY(${scrolled * 0.5}px)`;
+            }
+            
+            // Animate floating elements
+            const floatingElements = document.querySelectorAll('.floating-contact');
+            floatingElements.forEach((element, index) => {
+                const speed = 0.5 + index * 0.1;
+                element.style.transform = `translateY(${scrolled * speed * 0.1}px)`;
+            });
+        });
+        
+        // Add click effect to social links
+        document.querySelectorAll('.social-link').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                // Add ripple effect
+                const ripple = document.createElement('span');
+                const rect = this.getBoundingClientRect();
+                const size = Math.max(rect.width, rect.height);
+                const x = e.clientX - rect.left - size/2;
+                const y = e.clientY - rect.top - size/2;
+                
+                ripple.style.cssText = `
+                    position: absolute;
+                    border-radius: 50%;
+                    background: rgba(255, 255, 255, 0.3);
+                    transform: scale(0);
+                    animation: ripple 0.6s linear;
+                    width: ${size}px;
+                    height: ${size}px;
+                    left: ${x}px;
+                    top: ${y}px;
+                `;
+                
+                this.appendChild(ripple);
+                
+                setTimeout(() => {
+                    ripple.remove();
+                }, 600);
+                
+                // Show platform-specific message
+                const platform = this.querySelector('i').className.split(' ')[1];
+                const messages = {
+                    'fa-linkedin-in': 'Opening LinkedIn profile...',
+                    'fa-github': 'Opening GitHub profile...',
+                    'fa-twitter': 'Opening Twitter profile...',
+                    'fa-instagram': 'Opening Instagram profile...'
+                };
+                
+                if (messages[platform]) {
+                    showNotification(messages[platform]);
+                }
+            });
+        });
+    </script>
+</body>
+</html>

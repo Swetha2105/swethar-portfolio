@@ -1,0 +1,1045 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Swetha R | Internship</title>
+    
+    <!-- Bootstrap 5 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- AOS Animation -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary: #6a5acd;
+            --primary-dark: #483d8b;
+            --secondary: #ff7b54;
+            --accent: #4cc9f0;
+            --dark: #1a1a2e;
+            --light: #f8f9fa;
+            --gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: var(--dark);
+            color: var(--light);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+        
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Dancing Script', cursive;
+            font-weight: 700;
+        }
+        
+        .cursive {
+            font-family: 'Dancing Script', cursive;
+        }
+        
+        /* Navigation */
+        .navbar {
+            background: rgba(26, 26, 46, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .navbar-brand {
+            font-family: 'Dancing Script', cursive;
+            font-size: 2rem;
+            color: var(--accent) !important;
+        }
+        
+        .nav-link {
+            color: rgba(255, 255, 255, 0.8) !important;
+            margin: 0 1rem;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-link:hover {
+            color: var(--accent) !important;
+        }
+        
+        .nav-link.active {
+            color: var(--accent) !important;
+        }
+        
+        .nav-link:after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            background: var(--accent);
+            bottom: -5px;
+            left: 0;
+            transition: width 0.3s ease;
+        }
+        
+        .nav-link.active:after {
+            width: 100%;
+        }
+        
+        /* Page Header */
+        .page-header {
+            min-height: 40vh;
+            display: flex;
+            align-items: center;
+            padding-top: 100px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .header-bg {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 70% 30%, rgba(76, 201, 240, 0.3) 0%, transparent 50%);
+            z-index: -1;
+        }
+        
+        .page-title {
+            font-size: 5rem;
+            background: linear-gradient(to right, #ff7b54, #4cc9f0);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-align: center;
+            margin-bottom: 1rem;
+        }
+        
+        .page-subtitle {
+            text-align: center;
+            font-size: 1.5rem;
+            color: rgba(255, 255, 255, 0.7);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        /* Internship Timeline */
+        .internship-section {
+            padding: 5rem 0;
+        }
+        
+        .timeline-3d {
+            position: relative;
+            max-width: 1200px;
+            margin: 0 auto;
+            perspective: 1000px;
+        }
+        
+        .timeline-item-3d {
+            display: flex;
+            margin-bottom: 4rem;
+            position: relative;
+            transform-style: preserve-3d;
+            transition: transform 0.5s ease;
+        }
+        
+        .timeline-item-3d:hover {
+            transform: translateZ(50px);
+        }
+        
+        .timeline-date {
+            width: 200px;
+            padding: 1.5rem;
+            background: rgba(106, 90, 205, 0.2);
+            border-radius: 15px;
+            text-align: center;
+            font-weight: 600;
+            color: var(--accent);
+            font-size: 1.3rem;
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(106, 90, 205, 0.3);
+            position: relative;
+            z-index: 2;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+        
+        .timeline-content-3d {
+            flex: 1;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 2.5rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            margin-left: -50px;
+            padding-left: 4rem;
+            position: relative;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+        }
+        
+        .timeline-content-3d:hover {
+            background: rgba(255, 255, 255, 0.08);
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.3);
+        }
+        
+        .timeline-content-3d:before {
+            content: '';
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            background: var(--accent);
+            border-radius: 50%;
+            left: -15px;
+            top: 50%;
+            transform: translateY(-50%);
+            box-shadow: 0 0 20px rgba(76, 201, 240, 0.5);
+        }
+        
+        .company-name {
+            font-size: 2.2rem;
+            color: var(--accent);
+            margin-bottom: 0.5rem;
+        }
+        
+        .role-title {
+            font-size: 1.5rem;
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 1rem;
+        }
+        
+        .internship-details {
+            color: rgba(255, 255, 255, 0.7);
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+        
+        /* Technologies Used */
+        .tech-flow {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+        
+        .tech-flow-item {
+            padding: 0.8rem 1.5rem;
+            background: rgba(106, 90, 205, 0.2);
+            border-radius: 30px;
+            color: var(--accent);
+            border: 1px solid rgba(106, 90, 205, 0.3);
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+        
+        .tech-flow-item:hover {
+            transform: translateY(-5px);
+            background: rgba(106, 90, 205, 0.4);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+        
+        .tech-flow-item:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+            transition: left 0.5s ease;
+        }
+        
+        .tech-flow-item:hover:before {
+            left: 100%;
+        }
+        
+        /* Projects Grid */
+        .projects-section {
+            padding: 5rem 0;
+            background: rgba(0, 0, 0, 0.2);
+        }
+        
+        .projects-showcase {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .project-showcase-item {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.5s ease;
+            position: relative;
+        }
+        
+        .project-showcase-item:hover {
+            transform: translateY(-15px) scale(1.02);
+            box-shadow: 
+                0 30px 60px rgba(0, 0, 0, 0.3),
+                0 0 40px rgba(255, 123, 84, 0.2);
+            border-color: rgba(255, 123, 84, 0.3);
+        }
+        
+        .project-header {
+            padding: 2rem;
+            background: rgba(255, 123, 84, 0.1);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .project-title {
+            font-size: 1.8rem;
+            color: var(--secondary);
+            margin-bottom: 0.5rem;
+        }
+        
+        .project-desc {
+            color: rgba(255, 255, 255, 0.7);
+            line-height: 1.6;
+        }
+        
+        .project-features {
+            padding: 2rem;
+        }
+        
+        .feature-list {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .feature-list li {
+            padding: 0.5rem 0;
+            color: rgba(255, 255, 255, 0.8);
+            position: relative;
+            padding-left: 2rem;
+        }
+        
+        .feature-list li:before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--accent);
+            font-weight: bold;
+        }
+        
+        /* Achievement Badges */
+        .achievements-section {
+            padding: 5rem 0;
+        }
+        
+        .badges-container {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+        
+        .badge-3d {
+            width: 150px;
+            height: 150px;
+            position: relative;
+            transform-style: preserve-3d;
+            transition: transform 0.5s ease;
+            cursor: pointer;
+        }
+        
+        .badge-3d:hover {
+            transform: rotateY(180deg) scale(1.1);
+        }
+        
+        .badge-front, .badge-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            padding: 1.5rem;
+        }
+        
+        .badge-front {
+            background: linear-gradient(45deg, var(--primary), var(--accent));
+            color: white;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+        
+        .badge-back {
+            background: linear-gradient(45deg, var(--secondary), var(--primary));
+            color: white;
+            transform: rotateY(180deg);
+            text-align: center;
+        }
+        
+        .badge-icon {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .badge-text {
+            font-size: 0.9rem;
+        }
+        
+        /* Floating Code Windows */
+        .code-window {
+            position: absolute;
+            width: 300px;
+            height: 200px;
+            background: rgba(0, 0, 0, 0.7);
+            border-radius: 10px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            overflow: hidden;
+            z-index: -1;
+            opacity: 0.1;
+            animation: floatWindow 20s infinite linear;
+        }
+        
+        .window-header {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 0.5rem 1rem;
+            display: flex;
+            gap: 0.5rem;
+        }
+        
+        .window-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+        }
+        
+        .red { background: #ff5f56; }
+        .yellow { background: #ffbd2e; }
+        .green { background: #27ca3f; }
+        
+        .window-content {
+            padding: 1rem;
+            font-family: monospace;
+            color: #4cc9f0;
+            font-size: 0.9rem;
+        }
+        
+        @keyframes floatWindow {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+            }
+            100% {
+                transform: translateY(-100px) rotate(360deg);
+            }
+        }
+        
+        /* Back to Portal Button */
+        .back-to-portal {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 1000;
+        }
+        
+        .portal-btn {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: var(--gradient);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+            text-decoration: none;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
+        }
+        
+        .portal-btn:hover {
+            transform: scale(1.1) rotate(90deg);
+            box-shadow: 0 10px 30px rgba(106, 90, 205, 0.5);
+            color: white;
+        }
+        /* =======================
+   MOBILE RESPONSIVENESS
+   ======================= */
+
+/* Extra small devices (phones) */
+@media (max-width: 576px) {
+
+    body {
+        overflow-x: hidden;
+    }
+
+    /* Page Header */
+    .page-title {
+        font-size: 2.2rem;
+        line-height: 1.2;
+    }
+
+    .page-subtitle {
+        font-size: 1rem;
+        padding: 0 1rem;
+    }
+
+    /* Navbar */
+    .navbar-brand {
+        font-size: 1.6rem;
+    }
+
+    .nav-link {
+        margin: 0.5rem 0;
+        text-align: center;
+    }
+
+    /* Timeline */
+    .timeline-item-3d {
+        flex-direction: column;
+    }
+
+    .timeline-date {
+        width: 100%;
+        font-size: 1rem;
+        margin-bottom: 1rem;
+    }
+
+    .timeline-content-3d {
+        margin-left: 0;
+        padding: 1.5rem;
+    }
+
+    .timeline-content-3d:before {
+        display: none;
+    }
+
+    .company-name {
+        font-size: 1.6rem;
+    }
+
+    .role-title {
+        font-size: 1.2rem;
+    }
+
+    /* Tech stack chips */
+    .tech-flow {
+        justify-content: center;
+    }
+
+    .tech-flow-item {
+        font-size: 0.85rem;
+        padding: 0.5rem 1rem;
+    }
+
+    /* Projects */
+    .projects-showcase {
+        grid-template-columns: 1fr;
+    }
+
+    .project-title {
+        font-size: 1.4rem;
+    }
+
+    .project-desc {
+        font-size: 0.9rem;
+    }
+
+    /* Achievements */
+    .badge-3d {
+        width: 100px;
+        height: 100px;
+    }
+
+    .badge-icon {
+        font-size: 1.8rem;
+    }
+
+    .badge-text {
+        font-size: 0.75rem;
+        text-align: center;
+    }
+
+    /* Back to home button */
+    .portal-btn {
+        width: 50px;
+        height: 50px;
+        font-size: 1.2rem;
+    }
+
+    /* Disable heavy effects on mobile */
+    .code-window {
+        display: none;
+    }
+}
+
+/* Tablets */
+@media (max-width: 768px) {
+
+    .page-title {
+        font-size: 3rem;
+    }
+
+    .timeline-content-3d {
+        padding: 2rem;
+    }
+
+    .projects-showcase {
+        grid-template-columns: 1fr;
+    }
+
+    .badge-3d:hover {
+        transform: scale(1.05);
+    }
+}
+
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">Swetha R</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon text-white"><i class="fas fa-bars"></i></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link " href="home.html">Profile Snapshot</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="education.html">Learning Path</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="projects.html">Project Showcase</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="internship.html">Professional Experience</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="certificates.html">Credentials</a>
+                    </li>
+                    
+                    <li class="nav-item">
+                        <a class="nav-link" href="contact.html">Let’s Connect</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    
+    <!-- Page Header -->
+    <header class="page-header">
+        <div class="header-bg"></div>
+        <div class="container">
+            <h1 class="page-title cursive" data-aos="fade-up">Professional Exposure</h1>
+            <p class="page-subtitle" data-aos="fade-up" data-aos-delay="200">
+                Hands-on industry experience and practical learning
+            </p>
+        </div>
+    </header>
+    
+    <!-- Internship Timeline -->
+    <section class="internship-section">
+        <div class="container">
+            <div class="timeline-3d">
+                <!-- ITtoALL Internship -->
+                <div class="timeline-item-3d" data-aos="fade-right">
+                    <div class="timeline-date">
+                        July 7 - August 7, 2025
+                    </div>
+                    <div class="timeline-content-3d">
+                        <h3 class="company-name cursive">ITtoALL Pvt. Ltd.</h3>
+                        <p class="role-title">Web Developer Intern</p>
+                        <p class="internship-details">
+                            Worked as a Web Developer, contributing to two live projects — West Wynad Species 
+                            and JMR Logistics Website. Gained practical experience in front-end development, 
+                            responsive design, and version control using GitHub.
+                        </p>
+                        <p><strong>Mode:</strong> Hybrid</p>
+                        <p><strong>Performance:</strong> GOOD</p>
+                        <p><strong>Certificate No:</strong> ITA2025ST091</p>
+<div class="mt-4 text">
+    <button class="btn btn-outline-info px-4 py-2"
+            data-bs-toggle="modal"
+            data-bs-target="#certificateModal">
+        <i class="fas fa-award"></i> View Internship Certificate
+    </button>
+</div>
+
+
+                        <div class="tech-flow">
+                            <span class="tech-flow-item">HTML</span>
+                            <span class="tech-flow-item">CSS</span>
+                            <span class="tech-flow-item">PHP</span>
+                            <span class="tech-flow-item">MySQL</span>
+                            <span class="tech-flow-item">VS Code</span>
+                            <span class="tech-flow-item">GitHub</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Projects Section -->
+    <section class="projects-section">
+        <div class="container">
+            <h2 class="page-title cursive text-center mb-5" data-aos="fade-up">Live Clients Project Contributions</h2>
+            
+            <div class="projects-showcase">
+                <!-- West Wynad Species -->
+                <div class="project-showcase-item" data-aos="zoom-in">
+                    <div class="project-header">
+                        <h3 class="project-title cursive">West Wynad Species</h3>
+                        <p class="project-desc">
+                            A web platform showcasing biodiversity of West Wynad region with interactive species database.
+                        </p>
+                    </div>
+                    <div class="project-features">
+                        <ul class="feature-list">
+                            <li>Responsive design for all devices</li>
+                            <li>Interactive species catalog with filters</li>
+                            <li>Image gallery with lightbox</li>
+                            <li>Search functionality</li>
+                            <li>Admin panel for content management</li>
+                        </ul>
+                    </div>
+                      <!-- GitHub Button -->
+        <div class="mt-4 text-center">
+            <a href="https://github.com/Swetha2105/wynadspecies"
+               target="_blank"
+               class="btn btn-outline-light px-4">
+                <i class="fab fa-github"></i> View on GitHub
+            </a>
+        </div>
+                </div>
+                
+                <!-- JMR Logistics -->
+                <div class="project-showcase-item" data-aos="zoom-in" data-aos-delay="200">
+                    <div class="project-header">
+                        <h3 class="project-title cursive">JMR Logistics Website</h3>
+                        <p class="project-desc">
+                            A comprehensive logistics company website with service showcase and client portal.
+                        </p>
+                    </div>
+                    <div class="project-features">
+                        <ul class="feature-list">
+                            <li>Service portfolio display</li>
+                            <li>Real-time shipment tracking</li>
+                            <li>Contact form with validation</li>
+                            <li>Client testimonials section</li>
+                            <li>Mobile-responsive design</li>
+                        </ul>
+                    </div>
+                      <!-- GitHub Button -->
+        <div class="mt-4 text-center">
+            <a href="https://github.com/Swetha2105/JMR/tree/main/JMR%20logistics"
+               target="_blank"
+               class="btn btn-outline-light px-4">
+                <i class="fab fa-github"></i> View on GitHub
+            </a>
+        </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Achievements Section -->
+    <section class="achievements-section">
+        <div class="container">
+            <h2 class="page-title cursive text-center mb-5" data-aos="fade-up">Key Learnings</h2>
+            
+            <div class="badges-container">
+                <div class="badge-3d" data-aos="flip-left" data-aos-delay="100">
+                    <div class="badge-front">
+                        <div class="badge-icon">
+                            <i class="fas fa-code"></i>
+                        </div>
+                        <div class="badge-text">Frontend Development</div>
+                    </div>
+                    <div class="badge-back">
+                        <div class="badge-text">Hands-on experience with HTML, CSS, and responsive design principles</div>
+                    </div>
+                </div>
+                
+                <div class="badge-3d" data-aos="flip-left" data-aos-delay="200">
+                    <div class="badge-front">
+                        <div class="badge-icon">
+                            <i class="fas fa-project-diagram"></i>
+                        </div>
+                        <div class="badge-text">Live Projects</div>
+                    </div>
+                    <div class="badge-back">
+                        <div class="badge-text">Contributed to 2 real-world projects with production deployment</div>
+                    </div>
+                </div>
+                
+                <div class="badge-3d" data-aos="flip-left" data-aos-delay="300">
+                    <div class="badge-front">
+                        <div class="badge-icon">
+                            <i class="fab fa-github"></i>
+                        </div>
+                        <div class="badge-text">Version Control</div>
+                    </div>
+                    <div class="badge-back">
+                        <div class="badge-text">Practical experience with GitHub for collaborative development</div>
+                    </div>
+                </div>
+                
+                <div class="badge-3d" data-aos="flip-left" data-aos-delay="400">
+                    <div class="badge-front">
+                        <div class="badge-icon">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <div class="badge-text">Team Collaboration</div>
+                    </div>
+                    <div class="badge-back">
+                        <div class="badge-text">Worked in professional team environment with agile methodologies</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Back to Portal Button -->
+    <div class="back-to-portal">
+        <a href="index.html" class="portal-btn">
+            <i class="fas fa-home"></i>
+        </a>
+    </div>
+    
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- AOS Animation -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    
+    <script>
+        // Initialize AOS
+        AOS.init({
+            duration: 1000,
+            once: true,
+            offset: 100
+        });
+        
+        // Create floating code windows
+        function createCodeWindows() {
+            const codeSnippets = [
+                `// Responsive Design\n@media (max-width: 768px) {\n  .container {\n    padding: 1rem;\n  }\n}`,
+                `// PHP Database Connection\n$conn = mysqli_connect(\n  "localhost",\n  "username",\n  "password",\n  "database"\n);`,
+                `// JavaScript Function\nfunction animateElement(el) {\n  el.style.transform = \n    'translateY(-10px)';\n}`,
+                `// HTML Structure\n<div class="card">\n  <h2>Title</h2>\n  <p>Content</p>\n</div>`,
+                `// CSS Animation\n@keyframes fadeIn {\n  from { opacity: 0; }\n  to { opacity: 1; }\n}`
+            ];
+            
+            for (let i = 0; i < 5; i++) {
+                const window = document.createElement('div');
+                window.className = 'code-window';
+                
+                // Random position and animation
+                const left = Math.random() * 100;
+                const delay = Math.random() * 5;
+                const duration = Math.random() * 20 + 15;
+                
+                window.style.cssText = `
+                    left: ${left}%;
+                    animation-delay: ${delay}s;
+                    animation-duration: ${duration}s;
+                    top: ${Math.random() * 100}vh;
+                `;
+                
+                window.innerHTML = `
+                    <div class="window-header">
+                        <div class="window-dot red"></div>
+                        <div class="window-dot yellow"></div>
+                        <div class="window-dot green"></div>
+                    </div>
+                    <div class="window-content">
+                        ${codeSnippets[i]}
+                    </div>
+                `;
+                
+                document.body.appendChild(window);
+            }
+        }
+        
+        // Initialize code windows
+        createCodeWindows();
+        
+        // Add hover effect to tech flow items
+        document.querySelectorAll('.tech-flow-item').forEach(item => {
+            item.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-10px) scale(1.1)';
+                this.style.boxShadow = '0 15px 30px rgba(0, 0, 0, 0.3)';
+            });
+            
+            item.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0) scale(1)';
+                this.style.boxShadow = 'none';
+            });
+        });
+        
+        // Add 3D effect to project showcase items
+        document.querySelectorAll('.project-showcase-item').forEach(item => {
+            item.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-20px) rotateX(5deg) rotateY(5deg)';
+            });
+            
+            item.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(-15px) scale(1.02)';
+            });
+        });
+        
+        // Add click effect to badges
+        document.querySelectorAll('.badge-3d').forEach(badge => {
+            badge.addEventListener('click', function() {
+                this.style.transform = 'rotateY(180deg) scale(1.2)';
+                
+                setTimeout(() => {
+                    this.style.transform = 'rotateY(0) scale(1.1)';
+                }, 1000);
+            });
+        });
+        
+        // Add typing effect to code windows
+        function typeCodeAnimation() {
+            const codeElements = document.querySelectorAll('.window-content');
+            const originalCodes = [];
+            
+            codeElements.forEach((el, index) => {
+                originalCodes[index] = el.textContent;
+                el.textContent = '';
+                
+                let i = 0;
+                function typeWriter() {
+                    if (i < originalCodes[index].length) {
+                        el.textContent += originalCodes[index].charAt(i);
+                        i++;
+                        setTimeout(typeWriter, 10);
+                    } else {
+                        setTimeout(() => {
+                            el.textContent = '';
+                            i = 0;
+                            typeWriter();
+                        }, 3000);
+                    }
+                }
+                
+                setTimeout(typeWriter, index * 1000);
+            });
+        }
+        
+        // Start typing animation
+        setTimeout(typeCodeAnimation, 2000);
+        
+        // Parallax effect on scroll
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const headerBg = document.querySelector('.header-bg');
+            const timelineItems = document.querySelectorAll('.timeline-item-3d');
+            
+            if (headerBg) {
+                headerBg.style.transform = `translateY(${scrolled * 0.5}px)`;
+            }
+            
+            // Add 3D effect based on scroll
+            timelineItems.forEach((item, index) => {
+                const rect = item.getBoundingClientRect();
+                const centerY = rect.top + rect.height / 2;
+                const windowCenter = window.innerHeight / 2;
+                const distance = centerY - windowCenter;
+                const rotation = distance * 0.01;
+                
+                item.style.transform = `rotateY(${rotation}deg) translateZ(${Math.abs(rotation) * 5}px)`;
+            });
+        });
+        
+        // Add ripple effect to tech flow items
+        document.querySelectorAll('.tech-flow-item').forEach(item => {
+            item.addEventListener('click', function(e) {
+                const rect = this.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                
+                const ripple = document.createElement('span');
+                ripple.style.cssText = `
+                    position: absolute;
+                    border-radius: 50%;
+                    background: rgba(255, 255, 255, 0.3);
+                    transform: scale(0);
+                    animation: ripple 0.6s linear;
+                    width: 100px;
+                    height: 100px;
+                    left: ${x - 50}px;
+                    top: ${y - 50}px;
+                `;
+                
+                this.appendChild(ripple);
+                
+                setTimeout(() => {
+                    ripple.remove();
+                }, 600);
+            });
+        });
+        
+        // Add CSS for ripple animation
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes ripple {
+                to {
+                    transform: scale(4);
+                    opacity: 0;
+                }
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
+    <!-- Internship Certificate Modal -->
+<div class="modal fade" id="certificateModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-xl modal-dialog-centered modal-dialog-scrollable">
+        <div class="modal-content bg-dark text-white rounded-4 shadow-lg">
+
+            <!-- Header -->
+            <div class="modal-header border-secondary">
+                <h5 class="modal-title cursive text-info">
+                    <i class="fas fa-certificate"></i> Internship Certificate
+                </h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+            </div>
+
+            <!-- Body -->
+            <div class="modal-body text-center p-4">
+                <img src="intern certificate.png"
+                     alt="Internship Certificate"
+                     class="img-fluid rounded-3 shadow"
+                     style="max-height: 600px; object-fit: contain;">
+            </div>
+
+            <!-- Footer -->
+            <div class="modal-footer border-secondary justify-content-between">
+                <small class="text-muted">
+                    Certificate No: ITA2025ST091
+                </small>
+
+                <a href="intern certificate.png"
+                   download="Swetha_R_Internship_Certificate"
+                   class="btn btn-success px-4">
+                    <i class="fas fa-download"></i> Download
+                </a>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

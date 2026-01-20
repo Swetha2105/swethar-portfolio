@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Swetha R | Portfolio</title>
+
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+
+<style>
+:root{
+    --primary:#7b6cff;
+    --accent:#4cc9f0;
+    --bg:#0f1020;
+    --text:#fff;
+}
+
+*{margin:0;padding:0;box-sizing:border-box;}
+
+body{
+    font-family:'Dancing Script', cursive;
+    background-image: url('https://images.rawpixel.com/image_800/cHJpdmF0ZS9sci9pbWFnZXMvd2Vic2l0ZS8yMDIzLTA2L3JtNjU2ZGVzaWduLXJlbWl4MS0wMTgtZy5qcGc.jpg'); /* Replace with your image URL */
+    background-size: cover;       /* Cover entire screen */
+    background-position: center;  /* Center the image */
+    background-repeat: no-repeat; /* Avoid repeating */
+    color: var(--text);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    height:100vh;
+    overflow:hidden;
+    padding:20px;
+}
+
+
+/* Container: left profile + right button */
+.container{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:60px;
+    width:100%;
+    max-width:1200px;
+}
+
+/* Left side: profile rectangle */
+.profile-rect{
+    width:350px;
+    height:500px;
+    border-radius:20px;
+    overflow:hidden;
+    background:linear-gradient(135deg,var(--primary),var(--accent));
+    padding:10px;
+    box-shadow: 0 0 80px rgba(123,108,255,0.6),
+                0 0 150px rgba(76,201,240,0.3),
+                inset 0 0 25px rgba(255,255,255,0.1);
+    transition: transform 0.5s;
+}
+
+.profile-rect:hover{
+    transform: scale(1.05) rotate(-1deg);
+}
+
+.profile-rect img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    border-radius:15px;
+    border:4px solid rgba(255,255,255,0.1);
+}
+
+/* Right side: catchline + button */
+.right-side{
+    display:flex;
+    flex-direction:column;
+    align-items:flex-start;
+    gap:30px;
+    margin-left: 80px; /* increased space from the profile picture */
+}
+
+.catch-line {
+    font-size: 2.5rem;
+    color: blueviolet;
+    letter-spacing: 1px;
+    white-space: nowrap; 
+    margin-right: 180px;
+}
+
+.start-btn{
+    background: linear-gradient(135deg,var(--primary),var(--accent));
+    border:none;
+    padding:10px 30px;
+    border-radius:50px;
+    font-size:1.5rem;
+    color:white;
+    cursor:pointer;
+    transition:0.4s;
+    box-shadow: 0 5px 25px rgba(76,201,240,0.4);
+}
+
+.start-btn:hover{
+    transform: scale(1.1);
+    box-shadow: 0 10px 40px rgba(76,201,240,0.6);
+}
+
+/* ========================
+   MOBILE RESPONSIVENESS
+   ======================== */
+
+/* Small devices (phones) */
+@media (max-width: 576px) {
+    body {
+        padding: 10px;
+    }
+
+    /* Container stacks vertically */
+    .container {
+        flex-direction: column;
+        align-items: center;
+        gap: 30px;
+    }
+
+    /* Profile rectangle shrinks */
+    .profile-rect {
+        width: 250px;
+        height: 350px;
+        padding: 5px;
+    }
+
+    .profile-rect img {
+        border-radius: 12px;
+        border: 3px solid rgba(255,255,255,0.1);
+    }
+
+    /* Right side centered */
+    .right-side {
+        align-items: center;
+        text-align: center;
+        margin-left: 0;
+        gap: 20px;
+    }
+
+    /* Catch line smaller and wrapped */
+    .catch-line {
+        font-size: 1.6rem;
+        white-space: normal; /* allow wrapping */
+        margin-right: 0;
+    }
+
+    /* Start button smaller */
+    .start-btn {
+        font-size: 1.2rem;
+        padding: 8px 25px;
+    }
+}
+
+/* Medium devices (tablets) */
+@media (max-width: 900px) {
+    .container {
+        flex-direction: column;
+        align-items: center;
+        gap: 40px;
+    }
+
+    .profile-rect {
+        width: 300px;
+        height: 400px;
+    }
+
+    .catch-line {
+        font-size: 2rem;
+        white-space: normal;
+    }
+
+    .start-btn {
+        font-size: 1.3rem;
+        padding: 9px 28px;
+    }
+}
+
+
+</style>
+</head>
+<body>
+
+<div class="container">
+    <!-- Left side: profile -->
+    <div class="profile-rect">
+        <img src="swetha photo.jpg" alt="Swetha R">
+    </div>
+
+    <!-- Right side: catchline + button -->
+    <div class="right-side">
+        <div class="catch-line">Know Me Through My Portfolio...!!</div>
+        <button class="start-btn" onclick="location.href='home.html'">Uncover My Profile</button>
+    </div>
+</div>
+
+</body>
+</html>
