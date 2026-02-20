@@ -697,31 +697,39 @@
             font-size: 1.2rem;
             color: rgba(255, 255, 255, 0.8);
         }
-
 .amazon-square-card {
     width: 220px;
-    height: 220px;            /* Perfect Square */
+    height: 220px;
     margin: auto;
     display: flex;
     align-items: center;
     justify-content: center;
     border-radius: 18px;
 
-    background-color: #1A1A2E;   /* Applied Background Color */
+    background-color: #1A1A2E;
     
     box-shadow: 0 8px 20px rgba(0,0,0,0.25);
-    transition: all 0.3s ease;
+    transition: all 0.4s ease;
+    cursor: pointer;
+    overflow: hidden; /* Prevent overflow when image enlarges */
 }
 
 .amazon-square-card:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 15px 35px rgba(0,0,0,0.40);
+    transform: translateY(-10px) scale(1.05);
+    box-shadow: 0 20px 45px rgba(0,0,0,0.45);
 }
 
+/* Image styling */
 .amazon-square-card img {
     width: 140px;
     height: 140px;
     object-fit: contain;
+    transition: transform 0.4s ease;
+}
+
+/* Enlarge badge image on hover */
+.amazon-square-card:hover img {
+    transform: scale(1.15);
 }
         /* Floating Certificates */
         .floating-cert {
@@ -1627,6 +1635,7 @@ default:
 </script>
 </body>
 </html>
+
 
 
 
