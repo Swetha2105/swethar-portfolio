@@ -1419,7 +1419,7 @@
     }
 }
         ];
-   function initializeCertificates() {
+function initializeCertificates() {
 
     const nptelGrid = document.getElementById('nptel-grid');
     const infosysGrid = document.getElementById('infosys-grid');
@@ -1428,8 +1428,8 @@
     const participationGrid = document.getElementById('participation-grid');
     const quizGrid = document.getElementById('quiz-grid');
 
-    // ✅ NEW AWS Badge Grid
-    const awsBadgeGrid = document.getElementById('aws-badge-grid');
+    // ✅ FIXED: Amazon Grid ID
+    const amazonGrid = document.getElementById('amazon-grid');
 
     // Clear all grids
     [
@@ -1439,7 +1439,7 @@
         otherPlatformsGrid,
         participationGrid,
         quizGrid,
-        awsBadgeGrid
+        amazonGrid
     ].forEach(grid => {
         if (grid) grid.innerHTML = '';
     });
@@ -1454,7 +1454,7 @@
     let otherPlatformCount = 0;
     let participationCount = 0;
     let quizCount = 0;
-    let awsBadgeCount = 0;   // ✅ NEW
+    let amazonCount = 0;   // ✅ FIXED
 
     certificates.forEach((cert, index) => {
         const card = createCertificateCard(cert, index);
@@ -1491,10 +1491,10 @@
                 quizCount++; cocurricularCount++;
                 break;
 
-            // ✅ NEW AWS BADGE SECTION
-            case 'aws-badge':
-                awsBadgeGrid.appendChild(card);
-                awsBadgeCount++; onlineCount++;
+            // ✅ FIXED: Amazon Subcategory
+            case 'amazon':
+                amazonGrid.appendChild(card);
+                amazonCount++; onlineCount++;
                 break;
         }
     });
@@ -1515,10 +1515,9 @@
         otherPlatformCount,
         participationCount,
         quizCount,
-        awsBadgeCount     // ✅ Added
+        amazonCount   // ✅ FIXED
     );
 }
-
     function createCertificateCard(cert, index) {
         const card = document.createElement('div');
         card.className = `certificate-card-3d visible`;
@@ -1533,6 +1532,7 @@
             case 'Other Platform': typeClass = 'type-other-platform'; break;
             case 'Participation': typeClass = 'type-participation'; break;
             case 'Quiz': typeClass = 'type-quiz'; break;
+             case 'Amazon': typeClass = 'type-amazon'; break;
         }
 
         let detailsHTML = '';
@@ -1588,7 +1588,7 @@
         titles[3].innerHTML = `Other Platforms (${otherPlatform})`;
         titles[4].innerHTML = `Participation (${participation})`;
         titles[5].innerHTML = `Quiz (${quiz})`;
-        titles[6].innerHTML = `AWS Educate Badges (${awsBadge})`;
+       titles[6].innerHTML = `AWS Educate Badges (${awsBadge})`;
     }
 
     function viewCertificate(id) {
@@ -1651,6 +1651,7 @@
 </script>
 </body>
 </html>
+
 
 
 
