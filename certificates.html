@@ -1630,54 +1630,71 @@ default:
         titles[4].innerHTML = `Participation (${participation})`;
         titles[5].innerHTML = `Quiz (${quiz})`;
     }
+function viewCertificate(id) {
+    const cert = certificates.find(c => c.id === id);
+    if (!cert) return; // Safety check
 
-    function viewCertificate(id) {
-        const cert = certificates.find(c => c.id === id);
-        const viewer = document.getElementById('certificateViewer');
-        const viewerTitle = document.getElementById('viewerCertTitle');
-        const viewerIssuer = document.getElementById('viewerCertIssuer');
-        const viewerDate = document.getElementById('viewerCertDate');
-        const viewerScore = document.getElementById('viewerCertScore');
-        const viewerCategory = document.getElementById('viewerCertCategory');
-        const downloadBtn = document.getElementById('downloadCertBtn');
-        const imageContainer = document.querySelector('.certificate-image-container');
+    const viewer = document.getElementById('certificateViewer');
+    const viewerTitle = document.getElementById('viewerCertTitle');
+    const viewerIssuer = document.getElementById('viewerCertIssuer');
+    const viewerDate = document.getElementById('viewerCertDate');
+    const viewerScore = document.getElementById('viewerCertScore'); // FIXED
+    const viewerCategory = document.getElementById('viewerCertCategory');
+    const downloadBtn = document.getElementById('downloadCertBtn');
+    const imageContainer = document.querySelector('.certificate-image-container');
 
-        viewerTitle.textContent = cert.title;
-        viewerIssuer.textContent = cert.issuer;
-        viewerDate.textContent = cert.date;
-        viewerScore.textContent = cert.score;
-        viewerCategory.textContent =
-            cert.category === 'online' ? 'Online Course' : 'Co-curricular Activity';
+    // Set text values
+    viewerTitle.textContent = cert.title || 'N/A';
+    viewerIssuer.textContent = cert.issuer || 'N/A';
+    viewerDate.textContent = cert.date || 'N/A';
+    viewerScore.textContent = cert.score || 'N/A';
+    viewerCategory.textContent =
+        cert.category === 'online'
+            ? 'Online Course'
+            : 'Co-curricular Activity';
 
-        downloadBtn.href = cert.image;
-        downloadBtn.download = `${cert.title.replace(/\s+/g, '_')}_Certificate.jpg`;
+    // Set download
+    downloadBtn.href = cert.image;
+    downloadBtn.download =
+        `${cert.title.replace(/\s+/g, '_')}_Certificate.jpg`;
 
+    // Clear previous content
+    imageContainer.innerHTML = '';
+
+    // Create image element properly
+    const img = document.createElement('img');
+    img.src = cert.image;
+    img.alt = cert.title;
+    img.className = 'certificate-image';
+    img.style.opacity = '0';
+    img.style.transition = 'opacity 0.4s ease';
+
+    img.onload = () => {
+        img.style.opacity = '1';
+    };
+
+    img.onerror = function () {
         imageContainer.innerHTML = `
-            <img src="${cert.image}"
-                 alt="${cert.title}"
-                 class="certificate-image">
+            <div class="image-placeholder">
+                <i class="fas fa-certificate"></i>
+                <h3>Certificate Preview</h3>
+                <p><strong>${cert.title}</strong></p>
+                <p>Issued by: ${cert.issuer}</p>
+                <p>Date: ${cert.date}</p>
+                <p>Score: ${cert.score}</p>
+                <p style="font-size:0.9rem; margin-top:10px;">
+                    Image not found. Check file path.
+                </p>
+            </div>
         `;
+    };
 
-        const img = imageContainer.querySelector('img');
+    imageContainer.appendChild(img);
 
-        img.onload = () => img.style.opacity = '1';
-
-        img.onerror = function() {
-            imageContainer.innerHTML = `
-                <div class="image-placeholder">
-                    <i class="fas fa-certificate"></i>
-                    <h3>Certificate Preview</h3>
-                    <p>${cert.title}</p>
-                    <p>Issued by: ${cert.issuer}</p>
-                    <p>Date: ${cert.date}</p>
-                    <p>Score: ${cert.score}</p>
-                </div>
-            `;
-        };
-
-        viewer.classList.add('active');
-        document.body.style.overflow = 'hidden';
-    }
+    // Show modal
+    viewer.classList.add('active');
+    document.body.style.overflow = 'hidden';
+}
 
     function closeCertificateViewer() {
         document.getElementById('certificateViewer').classList.remove('active');
@@ -1691,6 +1708,7 @@ default:
 </script>
 </body>
 </html>
+
 
 
 
