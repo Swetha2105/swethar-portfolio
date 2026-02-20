@@ -932,16 +932,7 @@
             <div class="certificates-grid" id="infosys-grid">
                 <!-- Infosys certificates will be dynamically added -->
             </div>
-            <!-- IBM SkillsBuild Subcategory -->
-<div class="subcategory-header" style="border-color: #0f62fe; margin-top: 4rem;" data-aos="fade-up">
-    <h3 class="subcategory-title cursive">IBM SkillsBuild (4)</h3>
-    <p class="subcategory-count">IBM SkillsBuild Learning Platform</p>
-</div>
-
-<div class="certificates-grid" id="ibm-grid">
-    <!-- IBM certificates will be dynamically added -->
-</div>
-
+            
             <!-- Other Platforms Subcategory -->
             <div class="subcategory-header" style="border-color: var(--other-platform-color); margin-top: 4rem;" data-aos="fade-up">
                 <h3 class="subcategory-title cursive">Other Platforms (3)</h3>
@@ -980,14 +971,10 @@
                 <h3 class="subcategory-title cursive">Quiz (2)</h3>
                 <p class="subcategory-count">Technical & Coding Quizzes</p>
             </div>
-          
-
+            
             <div class="certificates-grid" id="quiz-grid">
                 <!-- Quiz certificates will be dynamically added -->
             </div>
-            
-</div>
-
         </div>
     </section>
     
@@ -1267,77 +1254,13 @@
                 details: {
                     Topic: "Programming Basics"
                 }
-            },
-            /* IBM SkillsBuild (4) */
-{
-    id: 12,
-    title: "Getting Started with Artificial Intelligence",
-    issuer: "IBM SkillsBuild",
-    date: "2025",
-    score: "Completed",
-    type: "IBM",
-    category: "online",
-    subcategory: "ibm",
-    icon: "fas fa-brain",
-    image: "IBM AI.png",
-    details: {
-        Platform: "IBM SkillsBuild",
-        Mode: "Self-paced"
-    }
-},
-{
-    id: 13,
-    title: "Getting Started with Cloud",
-    issuer: "IBM SkillsBuild",
-    date: "2025",
-    score: "Completed",
-    type: "IBM",
-    category: "online",
-    subcategory: "ibm",
-    icon: "fas fa-cloud",
-    image: "IBM CLOUD.png",
-    details: {
-        Platform: "IBM SkillsBuild",
-        Mode: "Self-paced"
-    }
-},
-{
-    id: 14,
-    title: "IBM Cloud Lab – 1",
-    issuer: "IBM SkillsBuild",
-    date: "2025",
-    score: "Completed",
-    type: "IBM",
-    category: "online",
-    subcategory: "ibm",
-    icon: "fas fa-laptop-code",
-    image: "IBM LAB1.png",
-    details: {
-        Type: "Hands-on Lab"
-    }
-},
-{
-    id: 15,
-    title: "IBM Cloud Lab – 2",
-    issuer: "IBM SkillsBuild",
-    date: "2025",
-    score: "Completed",
-    type: "IBM",
-    category: "online",
-    subcategory: "ibm",
-    icon: "fas fa-server",
-    image: "IBM LAB 2.png",
-    details: {
-        Type: "Hands-on Lab"
-    }
-}
+            }
         ];
 
-         // Initialize certificates by category
+        // Initialize certificates by category
         function initializeCertificates() {
             const nptelGrid = document.getElementById('nptel-grid');
             const infosysGrid = document.getElementById('infosys-grid');
-            const ibmGrid = document.getElementById('ibm-grid'); // ✅ Added
             const otherPlatformsGrid = document.getElementById('other-platforms-grid');
             const participationGrid = document.getElementById('participation-grid');
             const quizGrid = document.getElementById('quiz-grid');
@@ -1345,56 +1268,45 @@
             // Clear all grids
             nptelGrid.innerHTML = '';
             infosysGrid.innerHTML = '';
-            ibmGrid.innerHTML = '';
             otherPlatformsGrid.innerHTML = '';
             participationGrid.innerHTML = '';
             quizGrid.innerHTML = '';
             
-            // Count certificates
+            // Count certificates by category
             let onlineCount = 0;
             let cocurricularCount = 0;
             let nptelCount = 0;
             let infosysCount = 0;
-            let ibmCount = 0;
             let otherPlatformCount = 0;
             let participationCount = 0;
             let quizCount = 0;
             
             certificates.forEach((cert, index) => {
-                
+                // Create certificate card
                 const card = createCertificateCard(cert, index);
                 
+                // Add to appropriate grid based on subcategory
                 switch(cert.subcategory) {
                     case 'nptel':
                         nptelGrid.appendChild(card);
                         nptelCount++;
                         onlineCount++;
                         break;
-
                     case 'infosys':
                         infosysGrid.appendChild(card);
                         infosysCount++;
                         onlineCount++;
                         break;
-
-                    case 'ibm':
-                        ibmGrid.appendChild(card);
-                        ibmCount++;
-                        onlineCount++;
-                        break;
-
                     case 'other-platform':
                         otherPlatformsGrid.appendChild(card);
                         otherPlatformCount++;
                         onlineCount++;
                         break;
-
                     case 'participation':
                         participationGrid.appendChild(card);
                         participationCount++;
                         cocurricularCount++;
                         break;
-
                     case 'quiz':
                         quizGrid.appendChild(card);
                         quizCount++;
@@ -1403,43 +1315,34 @@
                 }
             });
             
-            document.getElementById('online-count').innerHTML =
-                `<i class="fas fa-graduation-cap"></i><span>${onlineCount} Certificates</span>`;
-
-            document.getElementById('cocurricular-count').innerHTML =
-                `<i class="fas fa-users"></i><span>${cocurricularCount} Certificates</span>`;
-
+            // Update counts in the UI
+            document.getElementById('online-count').innerHTML = `<i class="fas fa-graduation-cap"></i><span>${onlineCount} Certificates</span>`;
+            document.getElementById('cocurricular-count').innerHTML = `<i class="fas fa-users"></i><span>${cocurricularCount} Certificates</span>`;
             document.getElementById('totalCerts').textContent = certificates.length;
             
-            updateSubcategoryCounts(
-                nptelCount,
-                infosysCount,
-                ibmCount,
-                otherPlatformCount,
-                participationCount,
-                quizCount
-            );
+            // Update subcategory headers with counts
+            updateSubcategoryCounts(nptelCount, infosysCount, otherPlatformCount, participationCount, quizCount);
         }
         
-
         function createCertificateCard(cert, index) {
             const card = document.createElement('div');
             card.className = `certificate-card-3d visible`;
             card.setAttribute('data-aos', 'fade-up');
             card.setAttribute('data-aos-delay', (index % 3) * 100);
             
+            // Determine type class based on certificate type
             let typeClass = '';
             switch(cert.type) {
                 case 'NPTEL': typeClass = 'type-nptel'; break;
                 case 'Infosys': typeClass = 'type-infosys'; break;
-                case 'IBM': typeClass = 'type-ibm'; break;
                 case 'Other Platform': typeClass = 'type-other-platform'; break;
                 case 'Participation': typeClass = 'type-participation'; break;
                 case 'Quiz': typeClass = 'type-quiz'; break;
             }
             
+            // Create details HTML
             let detailsHTML = '';
-            for (const [key, value] of Object.entries(cert.details || {})) {
+            for (const [key, value] of Object.entries(cert.details)) {
                 detailsHTML += `
                     <div class="detail-item">
                         <span class="detail-label">${key}</span>
@@ -1466,14 +1369,11 @@
                     </div>
                     <div class="certificate-score">
                         <div class="score-value">${cert.score}</div>
-                        <div class="score-label">
-                            ${cert.type === 'NPTEL' ? 'Consolidated Score' : 'Status'}
-                        </div>
+                        <div class="score-label">${cert.type === 'NPTEL' ? 'Consolidated Score' : 'Status'}</div>
                     </div>
                     <div class="certificate-footer">
                         <span class="certificate-type ${typeClass}">${cert.type}</span>
-                        <button class="view-cert-btn"
-                            onclick="viewCertificate(${cert.id}); return false;">
+                        <button class="view-cert-btn" onclick="viewCertificate(${cert.id}); return false;">
                             <i class="fas fa-external-link-alt"></i> View Certificate
                         </button>
                     </div>
@@ -1483,19 +1383,16 @@
             return card;
         }
         
-
-        function updateSubcategoryCounts(nptel, infosys, ibm, otherPlatform, participation, quiz) {
-            const titles = document.querySelectorAll('.subcategory-title');
-
-            titles[0].innerHTML = `NPTEL (${nptel})`;
-            titles[1].innerHTML = `Infosys (${infosys})`;
-            titles[2].innerHTML = `IBM SkillsBuild (${ibm})`;
-            titles[3].innerHTML = `Other Platforms (${otherPlatform})`;
-            titles[4].innerHTML = `Participation (${participation})`;
-            titles[5].innerHTML = `Quiz (${quiz})`;
+        function updateSubcategoryCounts(nptel, infosys, otherPlatform, participation, quiz) {
+            // Update subcategory titles with counts
+            document.querySelectorAll('.subcategory-title')[0].innerHTML = `NPTEL (${nptel})`;
+            document.querySelectorAll('.subcategory-title')[1].innerHTML = `Infosys (${infosys})`;
+            document.querySelectorAll('.subcategory-title')[2].innerHTML = `Other Platforms (${otherPlatform})`;
+            document.querySelectorAll('.subcategory-title')[3].innerHTML = `Participation (${participation})`;
+            document.querySelectorAll('.subcategory-title')[4].innerHTML = `Quiz (${quiz})`;
         }
         
-
+        // View certificate - UPDATED to show image
         function viewCertificate(id) {
             const cert = certificates.find(c => c.id === id);
             const viewer = document.getElementById('certificateViewer');
@@ -1507,50 +1404,83 @@
             const downloadBtn = document.getElementById('downloadCertBtn');
             const imageContainer = document.querySelector('.certificate-image-container');
             
+            // Set certificate information
             viewerTitle.textContent = cert.title;
             viewerIssuer.textContent = cert.issuer;
             viewerDate.textContent = cert.date;
             viewerScore.textContent = cert.score;
-            viewerCategory.textContent =
-                cert.category === 'online' ? 'Online Course' : 'Co-curricular Activity';
+            viewerCategory.textContent = cert.category === 'online' ? 'Online Course' : 'Co-curricular Activity';
             
+            // Set download link
             downloadBtn.href = cert.image;
-            downloadBtn.download =
-                `${cert.title.replace(/\s+/g, '_')}_Certificate.jpg`;
+            downloadBtn.download = `${cert.title.replace(/\s+/g, '_')}_Certificate.jpg`;
             
+            // Create image element
             imageContainer.innerHTML = `
-                <img src="${cert.image}"
-                     alt="${cert.title}"
-                     class="certificate-image">
+                <img src="${cert.image}" 
+                     alt="${cert.title}" 
+                     class="certificate-image"
+                     onerror="this.onerror=null; this.src='data:image/svg+xml;charset=UTF-8,<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"400\" height=\"300\" viewBox=\"0 0 400 300\"><rect width=\"400\" height=\"300\" fill=\"%231a1a2e\"/><text x=\"200\" y=\"150\" font-family=\"Arial\" font-size=\"24\" fill=\"%234cc9f0\" text-anchor=\"middle\"></text></svg>
             `;
             
+            // Show viewer
             viewer.classList.add('active');
             document.body.style.overflow = 'hidden';
+            
+            // Add loading state
+            const img = imageContainer.querySelector('img');
+            img.style.opacity = '0';
+            img.style.transition = 'opacity 0.5s ease';
+            
+            img.onload = function() {
+                img.style.opacity = '1';
+            };
+            
+            // If image fails to load, show placeholder
+            img.onerror = function() {
+                imageContainer.innerHTML = `
+                    <div class="image-placeholder">
+                        <i class="fas fa-certificate"></i>
+                        <h3>Certificate Preview</h3>
+                        <p>${cert.title}</p>
+                        <p>Issued by: ${cert.issuer}</p>
+                        <p>Date: ${cert.date}</p>
+                        <p>Score: ${cert.score}</p>
+                    </div>
+                `;
+            };
         }
         
-
         function closeCertificateViewer() {
             const viewer = document.getElementById('certificateViewer');
             viewer.classList.remove('active');
             document.body.style.overflow = 'auto';
-            document.querySelector('.certificate-image-container').innerHTML = '';
+            
+            // Reset image container
+            const imageContainer = document.querySelector('.certificate-image-container');
+            imageContainer.innerHTML = '';
         }
         
-
+        // Close viewer on ESC key
         document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape') closeCertificateViewer();
+            if (e.key === 'Escape') {
+                closeCertificateViewer();
+            }
         });
         
-
+        // Close viewer when clicking outside the container
         document.getElementById('certificateViewer').addEventListener('click', function(e) {
-            if (e.target === this) closeCertificateViewer();
+            if (e.target === this) {
+                closeCertificateViewer();
+            }
         });
         
-
+        // Filter certificates by main category
         const filterButtons = document.querySelectorAll('.cert-filter-btn');
-
+        
         filterButtons.forEach(button => {
             button.addEventListener('click', () => {
+                // Update active button
                 filterButtons.forEach(btn => btn.classList.remove('active'));
                 button.classList.add('active');
                 
@@ -1564,37 +1494,44 @@
                 } else if (filter === 'online') {
                     onlineSection.style.display = 'block';
                     cocurricularSection.style.display = 'none';
-                } else {
+                } else if (filter === 'cocurricular') {
                     onlineSection.style.display = 'none';
                     cocurricularSection.style.display = 'block';
                 }
                 
+                // Trigger AOS animation for visible sections
                 AOS.refresh();
             });
         });
         
-
+        // Create floating certificates
         function createFloatingCerts() {
-            const icons = ['fas fa-award','fas fa-certificate','fas fa-trophy','fas fa-medal','fas fa-star'];
+            const icons = ['fas fa-award', 'fas fa-certificate', 'fas fa-trophy', 'fas fa-medal', 'fas fa-star'];
             
             for (let i = 0; i < 8; i++) {
                 const cert = document.createElement('div');
                 cert.className = 'floating-cert';
                 
+                // Random properties
+                const left = Math.random() * 100;
+                const delay = Math.random() * 5;
+                const duration = Math.random() * 20 + 15;
+                const icon = icons[Math.floor(Math.random() * icons.length)];
+                
                 cert.style.cssText = `
-                    left:${Math.random()*100}%;
-                    animation-delay:${Math.random()*5}s;
-                    animation-duration:${Math.random()*20+15}s;
-                    top:${Math.random()*100}vh;
-                    transform:rotate(${Math.random()*360}deg);
+                    left: ${left}%;
+                    animation-delay: ${delay}s;
+                    animation-duration: ${duration}s;
+                    top: ${Math.random() * 100}vh;
+                    transform: rotate(${Math.random() * 360}deg);
                 `;
                 
-                cert.innerHTML = `<i class="${icons[Math.floor(Math.random()*icons.length)]}"></i>`;
+                cert.innerHTML = `<i class="${icon}"></i>`;
                 document.body.appendChild(cert);
             }
         }
         
-
+        // Add hover effect to certificate cards
         function addHoverEffects() {
             const cards = document.querySelectorAll('.certificate-card-3d');
             
@@ -1602,14 +1539,16 @@
                 card.addEventListener('mouseenter', function() {
                     const icon = this.querySelector('.certificate-icon i');
                     icon.style.transform = 'scale(1.3) rotate(15deg)';
+                    
+                    const details = this.querySelectorAll('.detail-item');
+                    details.forEach((item, index) => {
+                        setTimeout(() => {
+                            item.style.transform = 'translateX(10px)';
+                            item.style.transition = 'transform 0.3s ease';
+                        }, index * 100);
+                    });
                 });
                 
-                card.addEventListener('mouseleave', function() {
-                    const icon = this.querySelector('.certificate-icon i');
-                    icon.style.transform = 'scale(1) rotate(0)';
-                });
-            });
-        }
                 card.addEventListener('mouseleave', function() {
                     const icon = this.querySelector('.certificate-icon i');
                     icon.style.transform = 'scale(1) rotate(0)';
@@ -1652,9 +1591,4 @@
         });
     </script>
 </body>
-
-</html> 
-
-
-
-
+</html>
