@@ -698,43 +698,28 @@
             color: rgba(255, 255, 255, 0.8);
         }
 
-        .type-amazon {
-    background: rgba(255, 153, 0, 0.2);
-    border-color: rgba(255, 153, 0, 0.4);
-    color: #ff9900;
-}
-        .amazon-badge-card {
+.amazon-square-card {
     background: #ffffff;
-    border-radius: 16px;
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06);
+    width: 220px;
+    height: 220px;            /* Perfect Square */
+    margin: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 18px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.08);
     transition: all 0.3s ease;
-    height: 100%;
 }
 
-.amazon-badge-card:hover {
+.amazon-square-card:hover {
     transform: translateY(-8px);
-    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.12);
+    box-shadow: 0 15px 35px rgba(0,0,0,0.15);
 }
 
-.amazon-badge-card img {
-    width: 130px;
-    height: 130px;
+.amazon-square-card img {
+    width: 140px;
+    height: 140px;
     object-fit: contain;
-    margin-bottom: 15px;
-}
-
-.badge-title {
-    font-weight: 600;
-    font-size: 15px;
-    color: #232f3e;
-    margin: 0;
-}
-
-#amazon-badges .certificate-card-3d:hover {
-    box-shadow:
-        0 40px 80px rgba(0, 0, 0, 0.4),
-        0 0 60px rgba(255, 153, 0, 0.4);
-    border-color: rgba(255, 153, 0, 0.5);
 }
         /* Floating Certificates */
         .floating-cert {
@@ -997,45 +982,42 @@
         </div>
     </section>
 <!-- Amazon Badges Section -->
-<section class="category-section" id="amazon-badges" style="background: #fff8f2; padding: 60px 0;">
-    <div class="container">
+<section id="amazon-badges" style="background:#fff8f2; padding:60px 0;">
+    <div class="container text-center">
         
-        <div class="text-center mb-5">
-            <h2 style="font-weight: 700; font-size: 32px; color: #232f3e;">
-                Amazon Web Services Badges
-            </h2>
-            <div style="width: 60px; height: 4px; background: #ff9900; margin: 10px auto 0; border-radius: 2px;"></div>
-        </div>
+        <h2 style="font-weight:700; font-size:30px; color:#232f3e;">
+            Amazon Web Services Badges
+        </h2>
+        <div style="width:60px; height:4px; background:#ff9900; margin:12px auto 40px; border-radius:2px;"></div>
 
         <div class="row justify-content-center g-4">
 
             <!-- Badge 1 -->
             <div class="col-md-4 col-sm-6">
-                <div class="amazon-badge-card text-center p-4">
+                <div class="amazon-square-card">
                     <img src="amazonCloud.png" alt="AWS Cloud Foundations Badge">
-                    <p class="badge-title">AWS Cloud Foundations</p>
                 </div>
             </div>
 
             <!-- Badge 2 -->
             <div class="col-md-4 col-sm-6">
-                <div class="amazon-badge-card text-center p-4">
+                <div class="amazon-square-card">
                     <img src="amazonGENAI.png" alt="AWS Generative AI Badge">
-                    <p class="badge-title">Generative AI on AWS</p>
                 </div>
             </div>
 
             <!-- Badge 3 -->
             <div class="col-md-4 col-sm-6">
-                <div class="amazon-badge-card text-center p-4">
+                <div class="amazon-square-card">
                     <img src="amazonML.png" alt="AWS Machine Learning Badge">
-                    <p class="badge-title">AWS Machine Learning</p>
                 </div>
             </div>
 
         </div>
     </div>
 </section>
+
+
     
     <!-- Co-curricular Activities Section -->
     <section class="category-section" id="cocurricular-section" style="background: rgba(0, 0, 0, 0.1);">
@@ -1644,6 +1626,7 @@ default:
 </script>
 </body>
 </html>
+
 
 
 
