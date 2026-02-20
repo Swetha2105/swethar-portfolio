@@ -703,6 +703,32 @@
     border-color: rgba(255, 153, 0, 0.4);
     color: #ff9900;
 }
+        .amazon-badge-card {
+    background: #ffffff;
+    border-radius: 16px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06);
+    transition: all 0.3s ease;
+    height: 100%;
+}
+
+.amazon-badge-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.12);
+}
+
+.amazon-badge-card img {
+    width: 130px;
+    height: 130px;
+    object-fit: contain;
+    margin-bottom: 15px;
+}
+
+.badge-title {
+    font-weight: 600;
+    font-size: 15px;
+    color: #232f3e;
+    margin: 0;
+}
 
 #amazon-badges .certificate-card-3d:hover {
     box-shadow:
@@ -970,32 +996,41 @@
             </div>
         </div>
     </section>
-    <!-- Amazon Badges Section -->
-<!-- Amazon Badges Section (Images Only) -->
-<section class="category-section" id="amazon-badges" style="background: rgba(255, 153, 0, 0.05);">
+<!-- Amazon Badges Section -->
+<section class="category-section" id="amazon-badges" style="background: #fff8f2; padding: 60px 0;">
     <div class="container">
-        <div class="category-header">
-            <h2 class="category-title cursive">Amazon Badges</h2>
+        
+        <div class="text-center mb-5">
+            <h2 style="font-weight: 700; font-size: 32px; color: #232f3e;">
+                Amazon Web Services Badges
+            </h2>
+            <div style="width: 60px; height: 4px; background: #ff9900; margin: 10px auto 0; border-radius: 2px;"></div>
         </div>
 
-        <div class="certificates-grid">
-            
-            <!-- AWS Cloud Foundations -->
-            <div class="certificate-card-3d visible">
-                <img src="amazonCloud.png" alt="AWS Cloud Foundations Badge" 
-                     style="width:100px; height:100px; object-fit:contain; padding:20px;">
+        <div class="row justify-content-center g-4">
+
+            <!-- Badge 1 -->
+            <div class="col-md-4 col-sm-6">
+                <div class="amazon-badge-card text-center p-4">
+                    <img src="amazonCloud.png" alt="AWS Cloud Foundations Badge">
+                    <p class="badge-title">AWS Cloud Foundations</p>
+                </div>
             </div>
 
-            <!-- AWS Cloud Practitioner Essentials -->
-            <div class="certificate-card-3d visible">
-                <img src="amazonGENAI.png" alt="AWS Cloud Practitioner Badge" 
-                     style="width:100px; height:100px; object-fit:contain; padding:20px;">
+            <!-- Badge 2 -->
+            <div class="col-md-4 col-sm-6">
+                <div class="amazon-badge-card text-center p-4">
+                    <img src="amazonGENAI.png" alt="AWS Generative AI Badge">
+                    <p class="badge-title">Generative AI on AWS</p>
+                </div>
             </div>
 
-            <!-- Introduction to Generative AI on AWS -->
-            <div class="certificate-card-3d visible">
-                <img src="amazonML.png" alt="Generative AI on AWS Badge" 
-                     style="width:100px; height:100px; object-fit:contain; padding:20px;">
+            <!-- Badge 3 -->
+            <div class="col-md-4 col-sm-6">
+                <div class="amazon-badge-card text-center p-4">
+                    <img src="amazonML.png" alt="AWS Machine Learning Badge">
+                    <p class="badge-title">AWS Machine Learning</p>
+                </div>
             </div>
 
         </div>
@@ -1609,6 +1644,7 @@ default:
 </script>
 </body>
 </html>
+
 
 
 
