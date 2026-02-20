@@ -697,7 +697,19 @@
             font-size: 1.2rem;
             color: rgba(255, 255, 255, 0.8);
         }
-        
+
+        .type-amazon {
+    background: rgba(255, 153, 0, 0.2);
+    border-color: rgba(255, 153, 0, 0.4);
+    color: #ff9900;
+}
+
+#amazon-badges .certificate-card-3d:hover {
+    box-shadow:
+        0 40px 80px rgba(0, 0, 0, 0.4),
+        0 0 60px rgba(255, 153, 0, 0.4);
+    border-color: rgba(255, 153, 0, 0.5);
+}
         /* Floating Certificates */
         .floating-cert {
             position: absolute;
@@ -958,6 +970,22 @@
             </div>
         </div>
     </section>
+    <!-- Amazon Badges Section -->
+<section class="category-section" id="amazon-badges" style="background: rgba(255, 153, 0, 0.05);">
+    <div class="container">
+        <div class="category-header" data-aos="fade-up">
+            <h2 class="category-title cursive">Amazon Badges</h2>
+            <div class="category-count" id="amazon-count">
+                <i class="fab fa-aws"></i>
+                <span>3 Badges</span>
+            </div>
+        </div>
+
+        <div class="certificates-grid" id="amazon-grid">
+            <!-- Amazon badges will be dynamically added -->
+        </div>
+    </div>
+</section>
     
     <!-- Co-curricular Activities Section -->
     <section class="category-section" id="cocurricular-section" style="background: rgba(0, 0, 0, 0.1);">
@@ -1340,84 +1368,156 @@
         LearningHours: "30 mins",
         Completion: "05 Feb 2026 (GMT)"
     }
+},
+        /* ================= AMAZON BADGES (3) ================= */
+{
+    id: 16,
+    title: "AWS Cloud Foundations",
+    issuer: "Amazon Web Services",
+    date: "Jan 2026",
+    score: "Badge Earned",
+    type: "Amazon",
+    category: "amazon",
+    subcategory: "amazon",
+    icon: "fab fa-aws",
+    image: "AWS1.png",
+    details: {
+        Platform: "AWS Skill Builder",
+        Level: "Foundational"
+    }
+},
+{
+    id: 17,
+    title: "AWS Cloud Practitioner Essentials",
+    issuer: "Amazon Web Services",
+    date: "Jan 2026",
+    score: "Badge Earned",
+    type: "Amazon",
+    category: "amazon",
+    subcategory: "amazon",
+    icon: "fab fa-aws",
+    image: "AWS2.png",
+    details: {
+        Focus: "Cloud Concepts",
+        Mode: "Self-paced"
+    }
+},
+{
+    id: 18,
+    title: "Introduction to Generative AI on AWS",
+    issuer: "Amazon Web Services",
+    date: "Feb 2026",
+    score: "Badge Earned",
+    type: "Amazon",
+    category: "amazon",
+    subcategory: "amazon",
+    icon: "fas fa-brain",
+    image: "AWS3.png",
+    details: {
+        Domain: "AI & Cloud",
+        Level: "Intermediate"
+    }
 }
         ];
-    function initializeCertificates() {
-        const nptelGrid = document.getElementById('nptel-grid');
-        const infosysGrid = document.getElementById('infosys-grid');
-        const ibmGrid = document.getElementById('ibm-grid');
-        const otherPlatformsGrid = document.getElementById('other-platforms-grid');
-        const participationGrid = document.getElementById('participation-grid');
-        const quizGrid = document.getElementById('quiz-grid');
+   function initializeCertificates() {
 
-        // Clear all grids
-        nptelGrid.innerHTML = '';
-        infosysGrid.innerHTML = '';
-        ibmGrid.innerHTML = '';
-        otherPlatformsGrid.innerHTML = '';
-        participationGrid.innerHTML = '';
-        quizGrid.innerHTML = '';
+    const nptelGrid = document.getElementById('nptel-grid');
+    const infosysGrid = document.getElementById('infosys-grid');
+    const ibmGrid = document.getElementById('ibm-grid');
+    const otherPlatformsGrid = document.getElementById('other-platforms-grid');
+    const participationGrid = document.getElementById('participation-grid');
+    const quizGrid = document.getElementById('quiz-grid');
 
-        // Counters
-        let onlineCount = 0;
-        let cocurricularCount = 0;
-        let nptelCount = 0;
-        let infosysCount = 0;
-        let ibmCount = 0;
-        let otherPlatformCount = 0;
-        let participationCount = 0;
-        let quizCount = 0;
+    // ✅ NEW AWS Badge Grid
+    const awsBadgeGrid = document.getElementById('aws-badge-grid');
 
-        certificates.forEach((cert, index) => {
-            const card = createCertificateCard(cert, index);
+    // Clear all grids
+    [
+        nptelGrid,
+        infosysGrid,
+        ibmGrid,
+        otherPlatformsGrid,
+        participationGrid,
+        quizGrid,
+        awsBadgeGrid
+    ].forEach(grid => {
+        if (grid) grid.innerHTML = '';
+    });
 
-            switch(cert.subcategory) {
-                case 'nptel':
-                    nptelGrid.appendChild(card);
-                    nptelCount++; onlineCount++;
-                    break;
-                case 'infosys':
-                    infosysGrid.appendChild(card);
-                    infosysCount++; onlineCount++;
-                    break;
-                case 'ibm':
-                    ibmGrid.appendChild(card);
-                    ibmCount++; onlineCount++;
-                    break;
-                case 'other-platform':
-                    otherPlatformsGrid.appendChild(card);
-                    otherPlatformCount++; onlineCount++;
-                    break;
-                case 'participation':
-                    participationGrid.appendChild(card);
-                    participationCount++; cocurricularCount++;
-                    break;
-                case 'quiz':
-                    quizGrid.appendChild(card);
-                    quizCount++; cocurricularCount++;
-                    break;
-            }
-        });
+    // Counters
+    let onlineCount = 0;
+    let cocurricularCount = 0;
 
-        // Update counts in UI
-        document.getElementById('online-count').innerHTML =
-            `<i class="fas fa-graduation-cap"></i><span>${onlineCount} Certificates</span>`;
+    let nptelCount = 0;
+    let infosysCount = 0;
+    let ibmCount = 0;
+    let otherPlatformCount = 0;
+    let participationCount = 0;
+    let quizCount = 0;
+    let awsBadgeCount = 0;   // ✅ NEW
 
-        document.getElementById('cocurricular-count').innerHTML =
-            `<i class="fas fa-users"></i><span>${cocurricularCount} Certificates</span>`;
+    certificates.forEach((cert, index) => {
+        const card = createCertificateCard(cert, index);
 
-        document.getElementById('totalCerts').textContent = certificates.length;
+        switch(cert.subcategory) {
 
-        // Correct parameter order
-        updateSubcategoryCounts(
-            nptelCount,
-            infosysCount,
-            ibmCount,
-            otherPlatformCount,
-            participationCount,
-            quizCount
-        );
-    }
+            case 'nptel':
+                nptelGrid.appendChild(card);
+                nptelCount++; onlineCount++;
+                break;
+
+            case 'infosys':
+                infosysGrid.appendChild(card);
+                infosysCount++; onlineCount++;
+                break;
+
+            case 'ibm':
+                ibmGrid.appendChild(card);
+                ibmCount++; onlineCount++;
+                break;
+
+            case 'other-platform':
+                otherPlatformsGrid.appendChild(card);
+                otherPlatformCount++; onlineCount++;
+                break;
+
+            case 'participation':
+                participationGrid.appendChild(card);
+                participationCount++; cocurricularCount++;
+                break;
+
+            case 'quiz':
+                quizGrid.appendChild(card);
+                quizCount++; cocurricularCount++;
+                break;
+
+            // ✅ NEW AWS BADGE SECTION
+            case 'aws-badge':
+                awsBadgeGrid.appendChild(card);
+                awsBadgeCount++; onlineCount++;
+                break;
+        }
+    });
+
+    // Update counts
+    document.getElementById('online-count').innerHTML =
+        `<i class="fas fa-graduation-cap"></i><span>${onlineCount} Certificates</span>`;
+
+    document.getElementById('cocurricular-count').innerHTML =
+        `<i class="fas fa-users"></i><span>${cocurricularCount} Certificates</span>`;
+
+    document.getElementById('totalCerts').textContent = certificates.length;
+
+    updateSubcategoryCounts(
+        nptelCount,
+        infosysCount,
+        ibmCount,
+        otherPlatformCount,
+        participationCount,
+        quizCount,
+        awsBadgeCount     // ✅ Added
+    );
+}
 
     function createCertificateCard(cert, index) {
         const card = document.createElement('div');
@@ -1488,6 +1588,7 @@
         titles[3].innerHTML = `Other Platforms (${otherPlatform})`;
         titles[4].innerHTML = `Participation (${participation})`;
         titles[5].innerHTML = `Quiz (${quiz})`;
+        titles[6].innerHTML = `AWS Educate Badges (${awsBadge})`;
     }
 
     function viewCertificate(id) {
@@ -1550,6 +1651,7 @@
 </script>
 </body>
 </html>
+
 
 
 
