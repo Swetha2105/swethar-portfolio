@@ -1631,8 +1631,9 @@ default:
         titles[5].innerHTML = `Quiz (${quiz})`;
     }
 function viewCertificate(id) {
+
     const cert = certificates.find(c => c.id === id);
-    if (!cert) return; // Safety check
+    if (!cert) return; // Prevent crash if ID not found
 
     const viewer = document.getElementById('certificateViewer');
     const viewerTitle = document.getElementById('viewerCertTitle');
@@ -1643,25 +1644,30 @@ function viewCertificate(id) {
     const downloadBtn = document.getElementById('downloadCertBtn');
     const imageContainer = document.querySelector('.certificate-image-container');
 
-    // Set text values
+    // Set text values safely
     viewerTitle.textContent = cert.title || 'N/A';
     viewerIssuer.textContent = cert.issuer || 'N/A';
     viewerDate.textContent = cert.date || 'N/A';
     viewerScore.textContent = cert.score || 'N/A';
-    viewerCategory.textContent =
-        cert.category === 'online'
-            ? 'Online Course'
-            : 'Co-curricular Activity';
 
-    // Set download
+    // Category display
+    if (cert.category === 'online') {
+        viewerCategory.textContent = 'Online Course';
+    } else if (cert.category === 'cocurricular') {
+        viewerCategory.textContent = 'Co-curricular Activity';
+    } else {
+        viewerCategory.textContent = 'Other';
+    }
+
+    // Download setup
     downloadBtn.href = cert.image;
     downloadBtn.download =
         `${cert.title.replace(/\s+/g, '_')}_Certificate.jpg`;
 
-    // Clear previous content
+    // Clear previous image
     imageContainer.innerHTML = '';
 
-    // Create image element properly
+    // Create image properly
     const img = document.createElement('img');
     img.src = cert.image;
     img.alt = cert.title;
@@ -1695,7 +1701,6 @@ function viewCertificate(id) {
     viewer.classList.add('active');
     document.body.style.overflow = 'hidden';
 }
-
     function closeCertificateViewer() {
         document.getElementById('certificateViewer').classList.remove('active');
         document.body.style.overflow = 'auto';
@@ -1708,6 +1713,7 @@ function viewCertificate(id) {
 </script>
 </body>
 </html>
+
 
 
 
