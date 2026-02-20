@@ -1710,9 +1710,52 @@ function viewCertificate(id) {
     window.addEventListener('load', () => {
         initializeCertificates();
     });
+        // ================= FILTER LOGIC =================
+
+const filterButtons = document.querySelectorAll('.cert-filter-btn');
+const onlineSection = document.getElementById('online-courses');
+const cocurricularSection = document.getElementById('cocurricular-section');
+const amazonSection = document.getElementById('amazon-badges');
+
+filterButtons.forEach(button => {
+    button.addEventListener('click', () => {
+
+        // Remove active class from all buttons
+        filterButtons.forEach(btn => btn.classList.remove('active'));
+
+        // Add active to clicked
+        button.classList.add('active');
+
+        const filterType = button.getAttribute('data-filter');
+
+        if (filterType === 'all') {
+            onlineSection.style.display = 'block';
+            cocurricularSection.style.display = 'block';
+            amazonSection.style.display = 'block';
+        }
+
+        if (filterType === 'online') {
+            onlineSection.style.display = 'block';
+            amazonSection.style.display = 'block';
+            cocurricularSection.style.display = 'none';
+
+            // Smooth scroll
+            onlineSection.scrollIntoView({ behavior: 'smooth' });
+        }
+
+        if (filterType === 'cocurricular') {
+            onlineSection.style.display = 'none';
+            amazonSection.style.display = 'none';
+            cocurricularSection.style.display = 'block';
+
+            cocurricularSection.scrollIntoView({ behavior: 'smooth' });
+        }
+    });
+});
 </script>
 </body>
 </html>
+
 
 
 
