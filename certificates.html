@@ -30,6 +30,7 @@
             --other-platform-color: #2a9d8f;
             --participation-color: #f4a261;
             --quiz-color: #9d4edd;
+            --ibm-color: #0f62fe;
         }
         
         * {
@@ -242,6 +243,11 @@
         .cert-filter-btn:hover:before {
             left: 100%;
         }
+        .type-ibm {
+    background: rgba(15, 98, 254, 0.2);
+    border-color: rgba(15, 98, 254, 0.3);
+    color: #0f62fe;
+}
         
         /* 3D Certificate Cards */
         .certificates-grid {
@@ -932,7 +938,15 @@
             <div class="certificates-grid" id="infosys-grid">
                 <!-- Infosys certificates will be dynamically added -->
             </div>
-            
+            <!-- IBM SkillsBuild Subcategory -->
+<div class="subcategory-header" style="border-color: #0f62fe; margin-top: 4rem;" data-aos="fade-up">
+    <h3 class="subcategory-title cursive">IBM SkillsBuild (0)</h3>
+    <p class="subcategory-count">IBM Professional Learning Platform</p>
+</div>
+
+<div class="certificates-grid" id="ibm-grid">
+    <!-- IBM certificates will be dynamically added -->
+</div>
             <!-- Other Platforms Subcategory -->
             <div class="subcategory-header" style="border-color: var(--other-platform-color); margin-top: 4rem;" data-aos="fade-up">
                 <h3 class="subcategory-title cursive">Other Platforms (3)</h3>
@@ -1125,7 +1139,71 @@
                     Mode: "Self-paced"
                 }
             },
-
+/* IBM SkillsBuild (4) */
+{
+    id: 12,
+    title: "Getting Started with Artificial Intelligence",
+    issuer: "IBM SkillsBuild",
+    date: "Feb 2025",
+    score: "Completed",
+    type: "IBM",
+    category: "online",
+    subcategory: "ibm",
+    icon: "fas fa-robot",
+    image: "IBM_AI.png",
+    details: {
+        Platform: "IBM SkillsBuild",
+        Level: "Beginner"
+    }
+},
+{
+    id: 13,
+    title: "Introduction to Cloud Computing",
+    issuer: "IBM SkillsBuild",
+    date: "Mar 2025",
+    score: "Completed",
+    type: "IBM",
+    category: "online",
+    subcategory: "ibm",
+    icon: "fas fa-cloud",
+    image: "IBM_Cloud.png",
+    details: {
+        Platform: "IBM SkillsBuild",
+        Mode: "Self-paced"
+    }
+},
+{
+    id: 14,
+    title: "Data Analytics Fundamentals",
+    issuer: "IBM SkillsBuild",
+    date: "Apr 2025",
+    score: "Completed",
+    type: "IBM",
+    category: "online",
+    subcategory: "ibm",
+    icon: "fas fa-chart-line",
+    image: "IBM_Data.png",
+    details: {
+        Platform: "IBM SkillsBuild",
+        Tool: "Data Analytics"
+    }
+},
+{
+    id: 15,
+    title: "Cybersecurity Essentials",
+    issuer: "IBM SkillsBuild",
+    date: "May 2025",
+    score: "Completed",
+    type: "IBM",
+    category: "online",
+    subcategory: "ibm",
+    icon: "fas fa-shield-alt",
+    image: "IBM_Cyber.png",
+    details: {
+        Platform: "IBM SkillsBuild",
+        Domain: "Security"
+    }
+},
             /* Other Platforms (3) */
             {
                 id: 4,
@@ -1264,7 +1342,8 @@
             const otherPlatformsGrid = document.getElementById('other-platforms-grid');
             const participationGrid = document.getElementById('participation-grid');
             const quizGrid = document.getElementById('quiz-grid');
-            
+            const ibmGrid = document.getElementById('ibm-grid');
+            ibmGrid.innerHTML = '';
             // Clear all grids
             nptelGrid.innerHTML = '';
             infosysGrid.innerHTML = '';
@@ -1280,7 +1359,7 @@
             let otherPlatformCount = 0;
             let participationCount = 0;
             let quizCount = 0;
-            
+            let ibmCount = 0;
             certificates.forEach((cert, index) => {
                 // Create certificate card
                 const card = createCertificateCard(cert, index);
@@ -1312,6 +1391,11 @@
                         quizCount++;
                         cocurricularCount++;
                         break;
+                        case 'ibm':
+    ibmGrid.appendChild(card);
+    ibmCount++;
+    onlineCount++;
+    break;
                 }
             });
             
@@ -1338,6 +1422,7 @@
                 case 'Other Platform': typeClass = 'type-other-platform'; break;
                 case 'Participation': typeClass = 'type-participation'; break;
                 case 'Quiz': typeClass = 'type-quiz'; break;
+                    case 'IBM': typeClass = 'type-ibm'; break;
             }
             
             // Create details HTML
@@ -1383,13 +1468,15 @@
             return card;
         }
         
-        function updateSubcategoryCounts(nptel, infosys, otherPlatform, participation, quiz) {
+        function updateSubcategoryCounts(nptel, infosys, ibm,otherPlatform, participation, quiz) {
             // Update subcategory titles with counts
             document.querySelectorAll('.subcategory-title')[0].innerHTML = `NPTEL (${nptel})`;
-            document.querySelectorAll('.subcategory-title')[1].innerHTML = `Infosys (${infosys})`;
-            document.querySelectorAll('.subcategory-title')[2].innerHTML = `Other Platforms (${otherPlatform})`;
-            document.querySelectorAll('.subcategory-title')[3].innerHTML = `Participation (${participation})`;
-            document.querySelectorAll('.subcategory-title')[4].innerHTML = `Quiz (${quiz})`;
+document.querySelectorAll('.subcategory-title')[1].innerHTML = `Infosys (${infosys})`;
+document.querySelectorAll('.subcategory-title')[2].innerHTML = `IBM SkillsBuild (${ibm})`;
+document.querySelectorAll('.subcategory-title')[3].innerHTML = `Other Platforms (${otherPlatform})`;
+document.querySelectorAll('.subcategory-title')[4].innerHTML = `Participation (${participation})`;
+document.querySelectorAll('.subcategory-title')[5].innerHTML = `Quiz (${quiz})`;
+            
         }
         
         // View certificate - UPDATED to show image
@@ -1592,3 +1679,4 @@
     </script>
 </body>
 </html>
+
